@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Court Finder</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(120deg, #a1c4fd, #c2e9fb);
+            height: 100vh;
+            margin: 0;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        h1 {
+            color: #3366CC;
+        }
+        .card-title {
+            color: #3366CC;
+        }
+        .btn-primary {
+            background-color: #3366CC;
+        }
+        .card-body {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="container py-5">
+        <h1 class="mb-5 text-center">Court Finder</h1>
+        
+        <div class="text-center mb-3">
+            <button class="btn btn-link" @click="showAboutUs = !showAboutUs">About Us</button>
+            <button class="btn btn-link" @click="showFAQ = !showFAQ">FAQ</button>
+        </div>
+
+        <div class="card text-center mt-4" v-if="showAboutUs">
+            <div class="card-body">
+                <h5 class="card-title">About Us</h5>
+                <p class="card-text">We are a team of legal professionals dedicated to providing easy-to-understand legal guidance. Our decision tree is designed to help you navigate through complex legal processes with ease.</p>
+            </div>
+        </div>
+
+        <div class="card text-center mt-4" v-if="showFAQ">
+            <div class="card-body">
+                <h5 class="card-title">Frequently Asked Questions</h5>
+                <p class="card-text">Here, you can put answers to common questions users might have about the decision tree.</p>
+            </div>
+        </div>
+
+        <div class="card text-center mb-4" v-if="welcomeMessage">
+            <div class="card-body">
+                <h5 class="card-title">Welcome to the Decision Tree!</h5>
+                <p class="card-text">Just answer the questions and we'll guide you through the process.</p>
+                <button @click="startProcess" class="btn btn-primary">Start</button>
+            </div>
+        </div>
+
+        <div v-if="started">
+            <div class="progress mb-5">
+                <div class="progress-bar" role="progressbar" :style="{width: progress + '%'}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+
+            <div v-for="(question, index) in questions" v-show="currentQuestion === index" class="mb-4" transition="fade">
+                <h2 :title="question.tooltip">{{ question.title }}</h2>
+                <div v-for="option in question.options" class="mb-2">
+                    <button @click="selectOption(option.next)" class="btn btn-primary">{{ option.text }}</button>
+                </div>
+            </div>
+
+            <div v-if="currentQuestion === -1" class="text-center">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="mb-4">You're Done!</h2>
+                        <p class="card-text">You should go to the {{ result }}.</p>
+                        <img :src="iconUrl" alt="Completion Icon">
+                    </div>
+                </div>
+                <button @click="reset" class="btn btn-primary mt-4">Start over</button>
+            </div>
+            
+            <div class="text-center mt-5">
+                <button @click="reset" class="btn btn-danger">Restart Process</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                welcomeMessage: true,
+                started: false,
+                showAboutUs: false,
+                showFAQ: false,
+                currentQuestion: 0,
+                iconUrl: 'https://png.pngtree.com/png-vector/20210319/ourmid/pngtree-warranty-icon-vector-safety-symbol-png-image_3081263.jpg',
+                result: '',
+                questions: [
+                { 
+                    title: 'Is your case being dealt with in the context of a criminal proceeding?', 
+                    tooltip: 'This concerns whether or not your case is part of a criminal proceeding.',
+                    options: [
+                        { text: 'Yes', next: -1, result: 'Please check the letter you received from the court.' },
+                        { text: 'No', next: 1 }
+                    ]
+                },
+                { 
+                    title: 'Is the dispute about a private tenancy agreement?', 
+                    tooltip: 'This concerns whether or not your case involves a private tenancy agreement.',
+                    options: [
+                        { text: 'Yes', next: -1, result: 'The District Court has jurisdiction.' },
+                        { text: 'No', next: 2 }
+                    ]
+                },
+                { 
+                    title: 'Is the dispute about a commercial lease?', 
+                    tooltip: 'This concerns whether or not your case involves a commercial lease.',
+                    options: [
+                        { text: 'Yes', next: 3 },
+                        { text: 'No', next: 4 }
+                    ]
+                },
+                { 
+                    title: 'Does the dispute value exceed 5000 Euros?', 
+                    tooltip: 'This concerns the total value of the dispute.',
+                    options: [
+                        { text: 'Yes', next: -1, result: 'The State Court has jurisdiction. You will need a lawyer.' },
+                        { text: 'No', next: -1, result: 'The District Court has jurisdiction.' }
+                    ]
+                },
+                { 
+                    title: 'Has this case already been dealt with in court?', 
+                    tooltip: 'This concerns whether or not your case has previously been heard in court.',
+                    options: [
+                        { text: 'Yes', next: 5 },
+                        { text: 'No', next: -1, result: 'Please consult a legal professional.' }
+                    ]
+                },
+                { 
+                    title: 'Are you planning to appeal or file a complaint?',
+                    tooltip: 'This concerns whether or not you plan to appeal the court\'s decision or file a complaint.',
+                    options: [
+                        { text: 'Yes', next: -1, result: 'Please proceed to the Appeal Process.' },
+                        { text: 'No', next: -1, result: 'The case is considered closed.' }
+                    ]
+                }
+            ]        
+            },
+            computed: {
+                progress() {
+                    return (this.currentQuestion / this.questions.length) * 100;
+                }
+            },
+            methods: {
+                startProcess() {
+                    this.welcomeMessage = false;
+                    this.started = true;
+                },
+                selectOption(nextIndex) {
+                    this.result = this.questions[this.currentQuestion].options.find(option => option.next === nextIndex).result;
+                    this.currentQuestion = nextIndex;
+                },
+                reset() {
+                    this.currentQuestion = 0;
+                    this.result = '';
+                    this.started = false;
+                    this.welcomeMessage = true;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
