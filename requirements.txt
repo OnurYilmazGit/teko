@@ -1,3 +1,4 @@
 openai
 python-decouple
 flask
+streamlit
