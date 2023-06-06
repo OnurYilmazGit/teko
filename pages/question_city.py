@@ -9,7 +9,7 @@ hide_pages(["home", "question_crime", "question_subject", "question_amount", "qu
 current_path = str(Path(__file__).parents[1])
 wreath_black_image = Image.open(current_path + "/assets/wreath_black.png")
 wreath_blue_image = Image.open(current_path + "/assets/wreath_blue.png")
-current_step = 3
+current_step = 5
 
 with st.sidebar:
     question_steps = {"question_crime": "Crime", "question_subject": "Subject", "question_amount": "Amount",
@@ -37,15 +37,13 @@ with st.sidebar:
 
         i += 1
 
-st.subheader("What is the monetary amount of dispute in your case?")
+st.subheader("In which city do you live? Please provide the PLZ.")
 st.markdown('<div style="text-align: justify;">'
-            'The monetary amount of dispute influences the objective juristiction of your case. While disputes about '
-            'commercial rents up to 5000 Euros are always negotiated at the Amtsgericht, higher monetary amounts are '
-            'discussed at the Landesgericht.'
+            'TODO: Text'
             '</div>', unsafe_allow_html=True)
 st.progress(1.0 / (len(question_steps.keys()) + 1) * current_step)
-st.selectbox(label="", options=("<= 5000 Euros", "> 5000 Euros"))
+st.text_input(label="", placeholder="PLZ", max_chars=5)
 
 next_question = st.button("Next Question")
 if next_question:
-    switch_page("question_appeal")
+    switch_page("survey_results")
