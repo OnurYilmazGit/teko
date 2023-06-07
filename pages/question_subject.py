@@ -3,14 +3,19 @@ from streamlit_extras.switch_page_button import switch_page
 from st_pages import hide_pages, Page, show_pages
 from PIL import Image
 from pathlib import Path
+from pages.custom_components import *
 
 
-hide_pages(["home", "question_crime", "question_subject", "question_amount", "question_appeal", "question_city",
-            "survey_results"])
+st.set_page_config(initial_sidebar_state="expanded", layout="wide")
+hide_pages(get_local_pages())
 current_path = str(Path(__file__).parents[1])
 wreath_black_image = Image.open(current_path + "/assets/wreath_black.png")
 wreath_blue_image = Image.open(current_path + "/assets/wreath_blue.png")
 current_step = 2
+
+
+show_navbar()
+
 
 with st.sidebar:
 
@@ -40,6 +45,8 @@ with st.sidebar:
 
         i += 1
 
+
+chapter_spacer()
 st.subheader("What is the subject of dispute in your case?")
 st.progress(1.0 / (len(question_steps.keys()) + 1) * current_step)
 st.markdown('<div style="text-align: justify;">'
@@ -47,7 +54,7 @@ st.markdown('<div style="text-align: justify;">'
             'rents are always negotiated at the Amtsgericht, commercial rent is either discussed at the Amtsgericht or '
             'Landesgericht.'
             '</div>', unsafe_allow_html=True)
-st.selectbox(label="", options=("Private Rent", "Commercial Rent"))
+st.session_state.subject = st.selectbox(label="", options=("Private Rent", "Commercial Rent"))
 
 next_question = st.button("Next Question")
 if next_question:
