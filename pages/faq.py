@@ -14,5 +14,25 @@ hide_pages(get_local_pages())
 current_path = str(Path(__file__).parents[0])
 
 
+# Define FAQ information
+faq_info = {
+    "Question 1": "Answer 1.",
+    "Question 2": "Answer 2.",
+    "Question 3": "Answer 3.",
+    "Question 4": "Answer 4.",
+}
+
+# Title
+st.title("Frequently Asked Questions")
+
+# Loop over questions
+for question, answer in faq_info.items():
+    # Check if question is not empty
+    if question.strip() != "":
+        # Create expander for each question
+        expander = st.expander(label=question) 
+        expander.write(answer)
+
+
 # Create Navbar
 show_navbar()
