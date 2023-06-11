@@ -12,6 +12,12 @@ wreath_black_image = Image.open(current_path + "/assets/wreath_black.png")
 wreath_blue_image = Image.open(current_path + "/assets/wreath_blue.png")
 current_step = 6
 
+# initialize session state attributes
+for attr in ['crime', 'subject', 'amount', 'appeal', 'city']:
+    if attr not in st.session_state:
+        st.session_state[attr] = ''
+
+
 with st.sidebar:
     question_steps = {"question_crime": "Crime", "question_subject": "Subject", "question_amount": "Amount",
                       "question_appeal": "Appeal", "question_city": "City"}
