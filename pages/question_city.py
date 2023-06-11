@@ -13,6 +13,10 @@ wreath_black_image = Image.open(current_path + "/assets/wreath_black.png")
 wreath_blue_image = Image.open(current_path + "/assets/wreath_blue.png")
 current_step = 5
 
+# initialize session state attributes
+for attr in ['crime', 'subject', 'amount', 'appeal', 'city']:
+    if attr not in st.session_state:
+        st.session_state[attr] = ''
 
 show_navbar()
 
@@ -50,8 +54,16 @@ st.markdown('<div style="text-align: justify;">'
             'TODO: Text'
             '</div>', unsafe_allow_html=True)
 st.progress(1.0 / (len(question_steps.keys()) + 1) * current_step)
-st.session_state.city = st.text_input(label="", placeholder="PLZ", max_chars=5)
 
-next_question = st.button("Show Results")
+city = st.text_input(label="", placeholder="PLZ", max_chars=5)
+if city.strip() != "":
+    st.session_state.city = city
+
+next_question = st.button("Finalize Test")
 if next_question:
-    switch_page("survey_results")
+    unanswered_questions = [key.replace("question_", "").capitalize() for key, value in st.session_state.items() if value in [None, ""]]
+    if unanswered_questions:
+        unanswered_questions_str = ", ".join(unanswered_questions)
+        st.warning(f"Please answer the following question(s): {unanswered_questions_str}")
+    else:
+        switch_page("survey_results")
