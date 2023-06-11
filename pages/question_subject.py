@@ -13,8 +13,13 @@ wreath_black_image = Image.open(current_path + "/assets/wreath_black.png")
 wreath_blue_image = Image.open(current_path + "/assets/wreath_blue.png")
 current_step = 2
 
+# initialize session state attributes
+for attr in ['crime', 'subject', 'amount', 'appeal', 'city']:
+    if attr not in st.session_state:
+        st.session_state[attr] = None
 
 show_navbar()
+
 
 
 with st.sidebar:
@@ -54,8 +59,15 @@ st.markdown('<div style="text-align: justify;">'
             'rents are always negotiated at the Amtsgericht, commercial rent is either discussed at the Amtsgericht or '
             'Landesgericht.'
             '</div>', unsafe_allow_html=True)
-st.session_state.subject = st.selectbox(label="", options=("Private Rent", "Commercial Rent"))
 
+
+if 'subject' not in st.session_state:
+    st.session_state.subject = ''
+
+st.session_state.subject = st.selectbox(label="", options=("", "Private Rent", "Commercial Rent"))
 next_question = st.button("Next Question")
 if next_question:
-    switch_page("question_amount")
+    if st.session_state.subject == "":
+        st.warning("Please answer the question before proceeding.")
+    else:
+        switch_page("question_amount")
