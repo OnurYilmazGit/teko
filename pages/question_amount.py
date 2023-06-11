@@ -13,6 +13,10 @@ wreath_black_image = Image.open(current_path + "/assets/wreath_black.png")
 wreath_blue_image = Image.open(current_path + "/assets/wreath_blue.png")
 current_step = 3
 
+# initialize session state attributes
+for attr in ['crime', 'subject', 'amount', 'appeal', 'city']:
+    if attr not in st.session_state:
+        st.session_state[attr] = None
 
 show_navbar()
 
@@ -52,8 +56,17 @@ st.markdown('<div style="text-align: justify;">'
             'discussed at the Landesgericht.'
             '</div>', unsafe_allow_html=True)
 st.progress(1.0 / (len(question_steps.keys()) + 1) * current_step)
-st.session_state.amount = st.selectbox(label="", options=("<= 5000 Euros", "> 5000 Euros"))
+
+if st.session_state.amount is None:
+    amount = st.selectbox(label="", options=("", "Less than 5000 Euros", "More than 5000 Euros"))
+    if amount != "":
+        st.session_state.amount = amount
+else:
+    st.session_state.amount = st.selectbox(label="", options=("Less than 5000 Euros", "More than 5000 Euros"), index=["Less than 5000 Euros", "More than 5000 Euros"].index(st.session_state.amount))
 
 next_question = st.button("Next Question")
 if next_question:
-    switch_page("question_appeal")
+    if st.session_state.amount == "":
+        st.warning("Please answer the question before proceeding.")
+    else:
+        switch_page("question_appeal")
