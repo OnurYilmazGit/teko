@@ -13,6 +13,10 @@ wreath_black_image = Image.open(current_path + "/assets/wreath_black.png")
 wreath_blue_image = Image.open(current_path + "/assets/wreath_blue.png")
 current_step = 4
 
+# initialize session state attributes
+for attr in ['crime', 'subject', 'amount', 'appeal', 'city']:
+    if attr not in st.session_state:
+        st.session_state[attr] = None
 
 show_navbar()
 
@@ -50,8 +54,17 @@ st.markdown('<div style="text-align: justify;">'
             'TODO: Text'
             '</div>', unsafe_allow_html=True)
 st.progress(1.0 / (len(question_steps.keys()) + 1) * current_step)
-st.session_state.appeal = st.selectbox(label="", options=("Yes", "No"))
+
+if st.session_state.appeal is None:
+    appeal = st.selectbox(label="", options=("", "Yes", "No"))
+    if appeal != "":
+        st.session_state.appeal = appeal
+else:
+    st.session_state.appeal = st.selectbox(label="", options=("Yes", "No"), index=["Yes", "No"].index(st.session_state.appeal))
 
 next_question = st.button("Next Question")
 if next_question:
-    switch_page("question_city")
+    if st.session_state.appeal == "":
+        st.warning("Please answer the question before proceeding.")
+    else:
+        switch_page("question_city")
