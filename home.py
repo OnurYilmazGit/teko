@@ -12,6 +12,8 @@ from pages.custom_components import get_local_pages, show_navbar, chapter_spacer
 st.set_page_config(initial_sidebar_state="collapsed", layout="wide")
 hide_pages(get_local_pages())
 current_path = str(Path(__file__).parents[0])
+st.session_state.current_page = "Home"
+st.session_state.current_index = 0
 
 
 # Create Navbar

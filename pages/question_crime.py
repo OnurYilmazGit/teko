@@ -22,6 +22,9 @@ current_path = str(Path(__file__).parents[1])
 wreath_black_image = Image.open(current_path + "/assets/wreath_black.png")
 wreath_blue_image = Image.open(current_path + "/assets/wreath_blue.png")
 current_step = 1
+st.session_state.current_page = "Find Court"
+st.session_state.current_index = 3
+
 
 # initialize session state attributes
 for attr in ['crime', 'subject', 'amount', 'appeal', 'city']:

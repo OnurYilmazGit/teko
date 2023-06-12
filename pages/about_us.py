@@ -9,6 +9,8 @@ from st_pages import hide_pages, Page, show_pages
 st.set_page_config(initial_sidebar_state="collapsed", layout="wide")
 hide_pages(get_local_pages())
 current_path = str(Path(__file__).parents[1])
+st.session_state.current_page = "About Us"
+st.session_state.current_index = 1
 
 # Create Navbar
 show_navbar()

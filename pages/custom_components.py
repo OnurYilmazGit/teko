@@ -20,8 +20,18 @@ def show_navbar():
         "nav-link-selected": {"background-color": "black"}
     }
     navbar = option_menu(None, ["Home", "About Us", "FAQ", "Find Court"],
-                         icons=['house', 'people', "question-circle", "book"], menu_icon="cast", default_index=0,
+                         icons=['house', 'people', "question-circle", "book"], menu_icon="cast", default_index=st.session_state.current_index,
                          orientation="horizontal", styles=navbar_style)
+
+    if navbar != st.session_state.current_page:
+        if navbar == "Home":
+            switch_page("home")
+        if navbar == "About Us":
+            switch_page("about_us")
+        if navbar == "FAQ":
+            switch_page("faq")
+        if navbar == "Find Court":
+            switch_page("question_crime")
 
 
 def get_local_pages():
