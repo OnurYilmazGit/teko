@@ -67,7 +67,4 @@ if 'subject' not in st.session_state:
 st.session_state.subject = st.selectbox(label="", options=("", "Private Rent", "Commercial Rent"))
 next_question = st.button("Next Question")
 if next_question:
-    if st.session_state.subject == "":
-        st.warning("Please answer the question before proceeding.")
-    else:
-        switch_page("question_amount")
+    switch_page("question_amount")

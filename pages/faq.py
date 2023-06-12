@@ -13,6 +13,8 @@ st.set_page_config(initial_sidebar_state="collapsed", layout="wide")
 hide_pages(get_local_pages())
 current_path = str(Path(__file__).parents[0])
 
+# Create Navbar
+show_navbar()
 
 # Define FAQ information
 faq_info = {
@@ -34,5 +36,4 @@ for question, answer in faq_info.items():
         expander.write(answer)
 
 
-# Create Navbar
-show_navbar()
+

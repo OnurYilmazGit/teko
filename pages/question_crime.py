@@ -77,7 +77,4 @@ else:
 
 next_question_content = st.button("Next Question", key='next_question_content')
 if next_question_content:
-    if st.session_state.crime == "":
-        st.warning("Please answer the question before proceeding.")
-    else:
-        switch_page("question_subject")
+    switch_page("question_subject")

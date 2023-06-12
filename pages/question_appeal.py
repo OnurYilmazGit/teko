@@ -64,7 +64,4 @@ else:
 
 next_question = st.button("Next Question")
 if next_question:
-    if st.session_state.appeal == "":
-        st.warning("Please answer the question before proceeding.")
-    else:
-        switch_page("question_city")
+    switch_page("question_city")
