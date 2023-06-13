@@ -54,17 +54,15 @@ with benefit1:
 with benefit2:
     _, col2, _ = st.columns([0.3, 0.4, 0.3])
     with col2:
-        with st.container():
-            decision_image = Image.open(current_path + "/assets/decision-tree.png")
-            st.image(decision_image)
-            st.subheader("Intuitive Process")
+        decision_image = Image.open(current_path + "/assets/decision-tree.png")
+        st.image(decision_image)
+        st.subheader("Intuitive Process")
 with benefit3:
     _, col2, _ = st.columns([0.3, 0.4, 0.3])
     with col2:
-        with st.container():
-            coin_image = Image.open(current_path + "/assets/coin.png")
-            st.image(coin_image)
-            st.subheader("Time and Cost Savings")
+        coin_image = Image.open(current_path + "/assets/coin.png")
+        st.image(coin_image)
+        st.subheader("Time and Cost Savings")
 
 
 chapter_spacer()

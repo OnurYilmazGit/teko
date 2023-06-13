@@ -24,7 +24,6 @@ for attr in ['crime', 'subject', 'amount', 'appeal', 'city']:
 show_navbar()
 
 
-
 with st.sidebar:
 
     question_steps = {"question_crime": "Crime", "question_subject": "Subject", "question_amount": "Amount",
