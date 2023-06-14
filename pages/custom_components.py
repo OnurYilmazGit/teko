@@ -45,6 +45,67 @@ def show_navbar():
             switch_page("question_crime")
 
 
+def get_question_dicts():
+    question_steps = {"question_crime": "Crime", "question_subject": "Subject", "question_case": "Case",
+                      "question_appeal": "Appeal", "question_amount": "Amount", "question_city": "City"}
+    document_steps = {"question_court": "Court", "question_plaintiff": "Plaintiff", "question_defendant": "Defendant",
+                      "question_target": "Target", "question_evidence": "Evidence", "question_ending": "Ending"}
+    return question_steps, document_steps
+
+
+def show_sidebar():
+    current_path = str(Path(__file__).parents[1])
+    wreath_black_image = Image.open(current_path + "/assets/wreath_black.png")
+    wreath_blue_image = Image.open(current_path + "/assets/wreath_blue.png")
+    question_steps, document_steps = get_question_dicts()
+
+    with st.sidebar:
+
+        with st.expander("Steps to find a court"):
+
+            for key, value in question_steps.items():
+
+                if st.session_state[key] or st.session_state[key] is not None:
+                    col1, col2 = st.columns([0.15, 0.85])
+                    with col1:
+                        st.image(wreath_black_image)
+                    with col2:
+                        subject = st.button(value)
+                        if subject:
+                            switch_page(key)
+
+                else:
+                    col1, col2 = st.columns([0.15, 0.85])
+                    with col1:
+                        st.image(wreath_blue_image)
+                    with col2:
+                        subject = st.button(value)
+                        if subject:
+                            switch_page(key)
+
+        with st.expander("Steps to create documents"):
+
+            for key, value in document_steps.items():
+
+                if st.session_state[key] or st.session_state[key] is not None:
+                    col1, col2 = st.columns([0.15, 0.85])
+                    with col1:
+                        st.image(wreath_black_image)
+                    with col2:
+                        subject = st.button(value)
+                        if subject:
+                            switch_page(key)
+
+                else:
+                    col1, col2 = st.columns([0.15, 0.85])
+                    with col1:
+                        st.image(wreath_blue_image)
+                    with col2:
+                        subject = st.button(value)
+                        if subject:
+                            switch_page(key)
+
+
 def get_local_pages():
     pages = ["home", "question_crime", "question_subject", "question_amount", "question_appeal", "question_city",
             "survey_results", "custom_components", "about_us", "faq", "question_case"]

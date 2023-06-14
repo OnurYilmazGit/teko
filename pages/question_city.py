@@ -8,43 +8,20 @@ from pages.custom_components import *
 
 st.set_page_config(initial_sidebar_state="expanded", layout="wide")
 hide_pages(get_local_pages())
-current_path = str(Path(__file__).parents[1])
-wreath_black_image = Image.open(current_path + "/assets/wreath_black.png")
-wreath_blue_image = Image.open(current_path + "/assets/wreath_blue.png")
 current_step = 5
 st.session_state.current_page = "Find Court"
 st.session_state.current_index = 3
 
 
 # initialize session state attributes
-question_steps = {"question_crime": "Crime", "question_subject": "Subject", "question_case": "Case",
-                  "question_appeal": "Appeal", "question_amount": "Amount", "question_city": "City"}
-for attr in question_steps.keys():
+question_steps, document_steps = get_question_dicts()
+for attr in list(question_steps.keys()) + list(document_steps.keys()):
     if attr not in st.session_state.keys():
         st.session_state[attr] = None
 
+
 show_navbar()
-
-with st.sidebar:
-    for key, value in question_steps.items():
-
-        if not st.session_state[key] or st.session_state[key] is not None:
-            col1, col2 = st.columns([0.15, 0.85])
-            with col1:
-                st.image(wreath_black_image)
-            with col2:
-                subject = st.button(value)
-                if subject:
-                    switch_page(key)
-
-        else:
-            col1, col2 = st.columns([0.15, 0.85])
-            with col1:
-                st.image(wreath_blue_image)
-            with col2:
-                subject = st.button(value)
-                if subject:
-                    switch_page(key)
+show_sidebar()
 
 
 chapter_spacer()
