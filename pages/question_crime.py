@@ -26,16 +26,19 @@ show_sidebar()
 
 # Content: Question
 chapter_spacer()
-st.subheader("Is this case the matter of a current criminal proceeding?")
+st.subheader("Which type of proceeding do you have?")
 st.progress((1.0 / 7) * current_step)
 st.markdown('<div style="text-align: justify;">'
-            'In the context of a criminal proceeding, a court cannot be selected by a citizen. Please refer to your '
-            'subpoena for the appropriate court of a criminal proceeding.'
+            'TEKO is currently only able to provide support in tenancy law. For other issues, finding a court by '
+            'yourself might even not be possible. In the context of a criminal proceeding, a court cannot be selected '
+            'by a citizen. Please refer to your subpoena for the appropriate court of a criminal proceeding.'
             '</div>', unsafe_allow_html=True)
 
-question_crime = st.selectbox(label="", options=("Yes", "No"))
+question_crime = st.selectbox(label="", options=("Tenancy Law", "Criminal Proceeding"))
 
 next_question = st.button("Next Question")
-if next_question:
+if next_question and question_crime == "Tenancy Law":
     st.session_state.question_crime = question_crime
     switch_page("question_subject")
+elif next_question and question_crime != "Tenancy Law":
+    st.error("TEKO is currently only able to provide support in tenancy law!")
