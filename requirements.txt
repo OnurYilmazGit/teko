@@ -1,4 +1,6 @@
 openai
-python-decouple
 flask
 streamlit
+folium
+pillow
+pathlib

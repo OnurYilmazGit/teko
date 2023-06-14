@@ -11,26 +11,24 @@ hide_pages(get_local_pages())
 current_path = str(Path(__file__).parents[1])
 wreath_black_image = Image.open(current_path + "/assets/wreath_black.png")
 wreath_blue_image = Image.open(current_path + "/assets/wreath_blue.png")
-current_step = 3
+current_step = 6
 st.session_state.current_page = "Find Court"
 st.session_state.current_index = 3
 
 
 # initialize session state attributes
-for attr in ['crime', 'subject', 'amount', 'appeal', 'city']:
-    if attr not in st.session_state:
+question_steps = {"question_crime": "Crime", "question_subject": "Subject", "question_case": "Case",
+                  "question_appeal": "Appeal", "question_amount": "Amount", "question_city": "City"}
+for attr in question_steps.keys():
+    if attr not in st.session_state.keys():
         st.session_state[attr] = None
 
 show_navbar()
 
-
 with st.sidebar:
-    question_steps = {"question_crime": "Crime", "question_subject": "Subject", "question_amount": "Amount",
-                      "question_appeal": "Appeal", "question_city": "City"}
-    i = 1
     for key, value in question_steps.items():
 
-        if i < current_step:
+        if st.session_state[key] is not None:
             col1, col2 = st.columns([0.15, 0.85])
             with col1:
                 st.image(wreath_black_image)
@@ -48,8 +46,6 @@ with st.sidebar:
                 if subject:
                     switch_page(key)
 
-        i += 1
-
 
 chapter_spacer()
 st.subheader("What is the monetary amount of dispute in your case?")
@@ -58,18 +54,11 @@ st.markdown('<div style="text-align: justify;">'
             'commercial rents up to 5000 Euros are always negotiated at the Amtsgericht, higher monetary amounts are '
             'discussed at the Landesgericht.'
             '</div>', unsafe_allow_html=True)
-st.progress(1.0 / (len(question_steps.keys()) + 1) * current_step)
+st.progress((1.0 / 7) * current_step)
 
-if st.session_state.amount is None:
-    amount = st.selectbox(label="", options=("", "Less than 5000 Euros", "More than 5000 Euros"))
-    if amount != "":
-        st.session_state.amount = amount
-else:
-    st.session_state.amount = st.selectbox(label="", options=("Less than 5000 Euros", "More than 5000 Euros"), index=["Less than 5000 Euros", "More than 5000 Euros"].index(st.session_state.amount))
+question_amount = st.number_input(label="", min_value=0)
 
 next_question = st.button("Next Question")
 if next_question:
-    if st.session_state.amount == "":
-        st.warning("Please answer the question before proceeding.")
-    else:
-        switch_page("question_appeal")
+    st.session_state.question_amount = question_amount
+    switch_page("question_city")

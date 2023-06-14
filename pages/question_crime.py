@@ -3,17 +3,7 @@ from streamlit_extras.switch_page_button import switch_page
 from st_pages import hide_pages, Page, show_pages
 from PIL import Image
 from pathlib import Path
-from pages.custom_components import *
-
-
-def check_all_questions_answered(session_state):
-    # Returns False if any question is unanswered
-    return all([bool(session_state[attr]) for attr in ['crime', 'subject', 'amount', 'appeal', 'city']])
-
-
-def update_next_question_state():
-    if 'next_question_sidebar' not in st.session_state:
-        st.session_state.next_question_sidebar = False
+from pages.custom_components import show_navbar, get_local_pages, chapter_spacer, components_spacer
 
 
 st.set_page_config(initial_sidebar_state="expanded", layout="wide")
@@ -27,19 +17,21 @@ st.session_state.current_index = 3
 
 
 # initialize session state attributes
-for attr in ['crime', 'subject', 'amount', 'appeal', 'city']:
-    if attr not in st.session_state:
+question_steps = {"question_crime": "Crime", "question_subject": "Subject", "question_case": "Case",
+                  "question_appeal": "Appeal", "question_amount": "Amount", "question_city": "City"}
+for attr in question_steps.keys():
+    if attr not in st.session_state.keys():
         st.session_state[attr] = None
+
 
 show_navbar()
 
-with st.sidebar:
-    question_steps = {"question_crime": "Crime", "question_subject": "Subject", "question_amount": "Amount",
-                      "question_appeal": "Appeal", "question_city": "City"}
-    i = 1
-    for key, value in question_steps.items():
 
-        if i < current_step:
+with st.sidebar:
+
+    for key, value in question_steps.items():
+        print("KEY", key, st.session_state[key])
+        if st.session_state[key] or st.session_state[key] is not None:
             col1, col2 = st.columns([0.15, 0.85])
             with col1:
                 st.image(wreath_black_image)
@@ -57,27 +49,19 @@ with st.sidebar:
                 if subject:
                     switch_page(key)
 
-        i += 1
-
 
 # Content: Question
 chapter_spacer()
 st.subheader("Is this case the matter of a current criminal proceeding?")
-st.progress(1.0 / (len(question_steps.keys()) + 1) * current_step)
+st.progress((1.0 / 7) * current_step)
 st.markdown('<div style="text-align: justify;">'
             'In the context of a criminal proceeding, a court cannot be selected by a citizen. Please refer to your '
             'subpoena for the appropriate court of a criminal proceeding.'
             '</div>', unsafe_allow_html=True)
 
-if st.session_state.crime is None:
-    crime = st.selectbox(label="Please select an option", options=("", "Yes", "No"))
-    if crime != "":
-        st.session_state.crime = crime
-else:
-    st.session_state.crime = st.selectbox(label="Please select an option", options=("Yes", "No"),
-                                          index=["Yes", "No"].index(st.session_state.crime))
-    update_next_question_state()
+question_crime = st.selectbox(label="", options=("Yes", "No"))
 
-next_question_content = st.button("Next Question", key='next_question_content')
-if next_question_content:
+next_question = st.button("Next Question")
+if next_question:
+    st.session_state.question_crime = question_crime
     switch_page("question_subject")

@@ -17,20 +17,18 @@ st.session_state.current_index = 3
 
 
 # initialize session state attributes
-for attr in ['crime', 'subject', 'amount', 'appeal', 'city']:
-    if attr not in st.session_state:
+question_steps = {"question_crime": "Crime", "question_subject": "Subject", "question_case": "Case",
+                  "question_appeal": "Appeal", "question_amount": "Amount", "question_city": "City"}
+for attr in question_steps.keys():
+    if attr not in st.session_state.keys():
         st.session_state[attr] = None
 
 show_navbar()
 
-
 with st.sidebar:
-    question_steps = {"question_crime": "Crime", "question_subject": "Subject", "question_amount": "Amount",
-                      "question_appeal": "Appeal", "question_city": "City"}
-    i = 1
     for key, value in question_steps.items():
 
-        if i < current_step:
+        if st.session_state[key] is not None:
             col1, col2 = st.columns([0.15, 0.85])
             with col1:
                 st.image(wreath_black_image)
@@ -48,23 +46,17 @@ with st.sidebar:
                 if subject:
                     switch_page(key)
 
-        i += 1
-
 
 chapter_spacer()
 st.subheader("Has this case already been negotiated in front of court? Do you want to appeal?")
 st.markdown('<div style="text-align: justify;">'
             'TODO: Text'
             '</div>', unsafe_allow_html=True)
-st.progress(1.0 / (len(question_steps.keys()) + 1) * current_step)
+st.progress((1.0 / 7) * current_step)
 
-if st.session_state.appeal is None:
-    appeal = st.selectbox(label="", options=("", "Yes", "No"))
-    if appeal != "":
-        st.session_state.appeal = appeal
-else:
-    st.session_state.appeal = st.selectbox(label="", options=("Yes", "No"), index=["Yes", "No"].index(st.session_state.appeal))
+question_appeal = st.selectbox(label="", options=("Yes", "No"))
 
 next_question = st.button("Next Question")
 if next_question:
-    switch_page("question_city")
+    st.session_state.question_appeal = question_appeal
+    switch_page("question_amount")

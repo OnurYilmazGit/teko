@@ -47,7 +47,7 @@ def show_navbar():
 
 def get_local_pages():
     pages = ["home", "question_crime", "question_subject", "question_amount", "question_appeal", "question_city",
-            "survey_results", "custom_components", "about_us", "faq"]
+            "survey_results", "custom_components", "about_us", "faq", "question_case"]
     return pages
 
 
