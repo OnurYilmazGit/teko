@@ -7,6 +7,7 @@ from streamlit_folium import st_folium
 import folium
 from pages.custom_components import *
 from streamlit_extras.card import card
+from src.decision_tree import *
 
 
 # Set config
@@ -29,18 +30,17 @@ show_sidebar()
 
 
 chapter_spacer()
-st.subheader("The responsible court is: Amtsgericht München")
+court_type, explanation = find_court_type(subject=st.session_state.question_subject,
+                                          appeal=st.session_state.question_appeal,
+                                          amount=st.session_state.question_amount)
+st.subheader(f"The responsible court is: {court_type} München")
 st.progress(1.0 / (len(question_steps.keys()) + 1) * current_step)
-st.markdown('<div style="text-align: justify;">'
-            'Your responsible court is the Amtsgericht München. Since the subject of your dispute is private rent, the '
-            'Amtsgericht is in charge of negotiating your case independently from the monetary amount of dispute. '
-            'The responsible Amtsgericht at the provided postal code is the Amtsgericht München.'
-            '</div>', unsafe_allow_html=True)
+st.markdown(f'<div style="text-align: justify;"> {explanation} </div>', unsafe_allow_html=True)
 
 chapter_spacer()
 info_col, map_col = st.columns(2)
 with info_col:
-    st.subheader("Amtsgericht München")
+    st.subheader(f"{court_type} München")
     st.markdown('<div style="text-align: justify;">'
                 'Pacellistraße 5, 80315 München'
                 '</div>', unsafe_allow_html=True)

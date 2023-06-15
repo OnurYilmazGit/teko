@@ -4,3 +4,6 @@ streamlit
 folium
 pillow
 pathlib
+streamlit_extras
+st_pages
+treelib
