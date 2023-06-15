@@ -35,22 +35,22 @@ court_type, explanation = find_court_type(subject=st.session_state.question_subj
                                           appeal=st.session_state.question_appeal,
                                           amount=st.session_state.question_amount)
 court_decision = receive_correct_court(court_type=court_type, city=st.session_state.question_city)
-st.subheader(f"The responsible court is: {court_decision}")
+lines = court_decision.splitlines()
+st.subheader(f"The responsible court is: {lines[0]}")
 st.progress(1.0 / (len(question_steps.keys()) + 1) * current_step)
 st.markdown(f'<div style="text-align: justify;"> {explanation} </div>', unsafe_allow_html=True)
 
 chapter_spacer()
 info_col, map_col = st.columns(2)
 with info_col:
-    st.subheader(court_decision)
-    st.markdown('<div style="text-align: justify;">'
-                'Pacellistraße 5, 80315 München'
-                '</div>', unsafe_allow_html=True)
+    st.subheader(lines[0])
+    st.markdown(f'<div style="text-align: justify;">{lines[1]}<br>{lines[2]}</div>', unsafe_allow_html=True)
+
     components_spacer()
     st.warning("You don't need an lawyer at this court!")
 with map_col:
-    folium_map = folium.Map(location=[39.949610, -75.150282], zoom_start=16)
-    folium.Marker([39.949610, -75.150282], popup="Liberty Bell", tooltip="Liberty Bell").add_to(folium_map)
+    folium_map = folium.Map(location=[48.1391, 11.5724], zoom_start=16)
+    folium.Marker([48.1391, 11.5724], popup="Liberty Bell", tooltip="Liberty Bell").add_to(folium_map)
     st_data = st_folium(folium_map, width=500, height=300)
 
 components_spacer()
@@ -85,6 +85,7 @@ with col1:
     st.text("")
     next_question = st.button("Create Documents")
     if next_question:
+        st.session_state.question_court = court_decision
         switch_page("question_court")
 with col2:
     img = Image.open(f"{current_path}/assets/document.jpg")

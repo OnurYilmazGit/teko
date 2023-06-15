@@ -29,7 +29,7 @@ def rephrase_description(situation_description):
 def receive_correct_court(court_type, city):
     openai.api_key = os.getenv("OPENAI_API_KEY")
 
-    prompt = f"I am living in city corresponding to PLZ {city}. At which {court_type} do I have to file a case for tenancy law? Please give me as an answer only the name of the court."
+    prompt = f"I am living in city corresponding to PLZ {city}. At which {court_type} do I have to file a case for tenancy law? As output please only provide the address in this format: courtname\nstreet\nPLZ and cityname" 
     print(prompt)
 
     completions = openai.ChatCompletion.create(
