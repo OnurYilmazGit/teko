@@ -26,7 +26,7 @@ show_sidebar()
 
 # Content: Question
 chapter_spacer()
-st.subheader("Which type of proceeding do you have?")
+st.subheader("Which court_type of proceeding do you have?")
 st.progress((1.0 / 7) * current_step)
 st.markdown('<div style="text-align: justify;">'
             'TEKO is currently only able to provide support in tenancy law. For other issues, finding a court by '

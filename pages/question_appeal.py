@@ -31,7 +31,7 @@ st.markdown('<div style="text-align: justify;">'
             '</div>', unsafe_allow_html=True)
 st.progress((1.0 / 7) * current_step)
 
-question_appeal = st.selectbox(label="", options=("Yes", "No"))
+question_appeal = st.selectbox(label="", options=("No", "Yes"))
 
 next_question = st.button("Next Question")
 if next_question:

@@ -8,6 +8,7 @@ import folium
 from pages.custom_components import *
 from streamlit_extras.card import card
 from src.decision_tree import *
+from src.open_ai_api import *
 
 
 # Set config
@@ -33,14 +34,15 @@ chapter_spacer()
 court_type, explanation = find_court_type(subject=st.session_state.question_subject,
                                           appeal=st.session_state.question_appeal,
                                           amount=st.session_state.question_amount)
-st.subheader(f"The responsible court is: {court_type} München")
+court_decision = receive_correct_court(court_type=court_type, city=st.session_state.question_city)
+st.subheader(f"The responsible court is: {court_decision}")
 st.progress(1.0 / (len(question_steps.keys()) + 1) * current_step)
 st.markdown(f'<div style="text-align: justify;"> {explanation} </div>', unsafe_allow_html=True)
 
 chapter_spacer()
 info_col, map_col = st.columns(2)
 with info_col:
-    st.subheader(f"{court_type} München")
+    st.subheader(court_decision)
     st.markdown('<div style="text-align: justify;">'
                 'Pacellistraße 5, 80315 München'
                 '</div>', unsafe_allow_html=True)
