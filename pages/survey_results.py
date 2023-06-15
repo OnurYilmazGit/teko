@@ -85,7 +85,7 @@ with col1:
     st.text("")
     next_question = st.button("Create Documents")
     if next_question:
-        switch_page("home")
+        switch_page("question_court")
 with col2:
     img = Image.open(f"{current_path}/assets/document.jpg")
     st.image(img)

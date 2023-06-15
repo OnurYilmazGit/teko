@@ -1,10 +1,12 @@
-from decouple import config
 import openai
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 def rephrase_description(situation_description):
-    openai_api_key = config("OPENAI_API")
-    openai.api_key = openai_api_key
+    openai.api_key = os.getenv("OPENAI_API_KEY")
+    print(openai.api_key)
 
     instruction = f"Reformulate the following text to a natural-sounding and accurate text for legal documents.\n"
     prompt = instruction + situation_description
@@ -25,8 +27,7 @@ def rephrase_description(situation_description):
 
 
 def receive_correct_court(court_type, city):
-    openai_api_key = config("OPENAI_API")
-    openai.api_key = openai_api_key
+    openai.api_key = os.getenv("OPENAI_API_KEY")
 
     prompt = f"I am living in city corresponding to PLZ {city}. At which {court_type} do I have to file a case for tenancy law? Please give me as an answer only the name of the court."
     print(prompt)
