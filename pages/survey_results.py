@@ -36,8 +36,9 @@ chapter_spacer()
 court_type, explanation = find_court_type(subject=st.session_state.question_subject,
                                           appeal=st.session_state.question_appeal,
                                           amount=st.session_state.question_amount)
-court_decision = receive_court(city=st.session_state.question_city, court_type=court_type)
+court_decision = receive_court(plz=st.session_state.question_city, court_type=court_type)
 court_location = get_address(court_decision)
+court_location = court_location.replace(', ', ',<br>')
 court_coordinates = get_coordinates(court_decision)
 st.subheader(f"The responsible court is: {court_decision}")
 st.progress(1.0 / (len(question_steps.keys()) + 1) * current_step)
