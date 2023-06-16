@@ -33,6 +33,6 @@ st.markdown('<div style="text-align: justify;">'
             'Please confirm the court selection or enter the details of another court.'
             '</div>', unsafe_allow_html=True)
 
-question_court_address = st.text_input(label="", value=court_decision, max_chars=100).strip()
+question_court_address = st.text_input(value=court_decision, max_chars=100).strip()
 
 next_question = st.button("Next question")

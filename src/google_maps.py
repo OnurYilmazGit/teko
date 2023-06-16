@@ -9,7 +9,8 @@ load_dotenv()
 API_KEY = os.getenv("GOOGLE_MAPS_API_KEY")
 
 def get_address(place):
-    place_url = urllib.parse.quote(place)
+    place_url = urllib.parse.quote(place.encode('utf-8'))
+
 
     url = f"https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={place_url}&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry&key={API_KEY}"
 

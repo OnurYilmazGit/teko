@@ -33,10 +33,13 @@ show_sidebar()
 
 
 chapter_spacer()
+print(st.session_state.question_amount)
 court_type, explanation = find_court_type(subject=st.session_state.question_subject,
                                           appeal=st.session_state.question_appeal,
                                           amount=st.session_state.question_amount)
+print(court_type)
 court_decision = receive_court(plz=st.session_state.question_city, court_type=court_type)
+print(court_decision)
 court_location = get_address(court_decision)
 court_location = court_location.replace(', ', ',<br>')
 court_coordinates = get_coordinates(court_decision)
@@ -51,7 +54,10 @@ with info_col:
     st.markdown(f'<div style="text-align: justify;">{court_location}</div>', unsafe_allow_html=True)
 
     components_spacer()
-    st.warning("You don't need an lawyer at this court!")
+    if court_type == "Amtsgericht":
+        st.warning("You don't need a lawyer at this court!")
+    else:
+        st.warning("You need a lawyer at this court!")
 with map_col:
     folium_map = folium.Map(location=court_coordinates, zoom_start=16)
     folium.Marker(court_coordinates, popup="Liberty Bell", tooltip="Liberty Bell").add_to(folium_map)
