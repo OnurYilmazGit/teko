@@ -9,6 +9,8 @@ from pages.custom_components import *
 from streamlit_extras.card import card
 from src.decision_tree import *
 from src.open_ai_api import *
+from src.google_maps import *
+from src.web_scraper import *
 
 
 # Set config
@@ -34,23 +36,24 @@ chapter_spacer()
 court_type, explanation = find_court_type(subject=st.session_state.question_subject,
                                           appeal=st.session_state.question_appeal,
                                           amount=st.session_state.question_amount)
-court_decision = receive_correct_court(court_type=court_type, city=st.session_state.question_city)
-lines = court_decision.splitlines()
-st.subheader(f"The responsible court is: {lines[0]}")
+court_decision = receive_court(city=st.session_state.question_city, court_type=court_type)
+court_location = get_address(court_decision)
+court_coordinates = get_coordinates(court_decision)
+st.subheader(f"The responsible court is: {court_decision}")
 st.progress(1.0 / (len(question_steps.keys()) + 1) * current_step)
 st.markdown(f'<div style="text-align: justify;"> {explanation} </div>', unsafe_allow_html=True)
 
 chapter_spacer()
 info_col, map_col = st.columns(2)
 with info_col:
-    st.subheader(lines[0])
-    st.markdown(f'<div style="text-align: justify;">{lines[1]}<br>{lines[2]}</div>', unsafe_allow_html=True)
+    st.subheader(court_decision)
+    st.markdown(f'<div style="text-align: justify;">{court_location}</div>', unsafe_allow_html=True)
 
     components_spacer()
     st.warning("You don't need an lawyer at this court!")
 with map_col:
-    folium_map = folium.Map(location=[48.1391, 11.5724], zoom_start=16)
-    folium.Marker([48.1391, 11.5724], popup="Liberty Bell", tooltip="Liberty Bell").add_to(folium_map)
+    folium_map = folium.Map(location=court_coordinates, zoom_start=16)
+    folium.Marker(court_coordinates, popup="Liberty Bell", tooltip="Liberty Bell").add_to(folium_map)
     st_data = st_folium(folium_map, width=500, height=300)
 
 components_spacer()

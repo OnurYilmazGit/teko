@@ -40,7 +40,3 @@ def get_coordinates(place):
     lng = data['candidates'][0]['geometry']['location']['lng']
 
     return lat, lng
-
-
-print(get_address("Amtsgericht Aichach"))
-print(get_coordinates("Amtsgericht Aichach"))
