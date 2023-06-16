@@ -23,14 +23,16 @@ for attr in list(question_steps.keys()) + list(document_steps.keys()):
 show_navbar()
 show_sidebar()
 
+court_decision = st.session_state.question_court
+lines = court_decision.splitlines()
 
 chapter_spacer()
-st.subheader(f"The Court Finder identified {st.session_state.question_court} as the appropriate court.")
-st.markdown('<div style="text-align: justify;">'
-            'TODO: Text'
-            '</div>', unsafe_allow_html=True)
+st.subheader(f"The Court Finder identified {lines[0]} as the appropriate court.")
 st.progress((1.0 / 7) * current_step)
+st.markdown('<div style="text-align: justify;">'
+            'Please confirm the court selection or enter the details of another court.'
+            '</div>', unsafe_allow_html=True)
 
-question_court_address = st.text_input(label="", placeholder="PLZ", max_chars=100).strip()
+question_court_address = st.text_input(label="", value=court_decision, max_chars=100).strip()
 
 next_question = st.button("Next question")
