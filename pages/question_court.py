@@ -4,6 +4,7 @@ from st_pages import hide_pages, Page, show_pages
 from PIL import Image
 from pathlib import Path
 from pages.custom_components import *
+from src.google_maps import *
 
 
 st.set_page_config(initial_sidebar_state="expanded", layout="wide")
@@ -24,15 +25,20 @@ show_navbar()
 show_sidebar()
 
 court_decision = st.session_state.question_court
-lines = court_decision.splitlines()
+court_location = get_address(court_decision)
 
 chapter_spacer()
-st.subheader(f"The Court Finder identified {lines[0]} as the appropriate court.")
+st.subheader(f"The Court Finder identified {court_decision} as the appropriate court.")
 st.progress((1.0 / 7) * current_step)
 st.markdown('<div style="text-align: justify;">'
             'Please confirm the court selection or enter the details of another court.'
             '</div>', unsafe_allow_html=True)
 
-question_court_address = st.text_input(value=court_decision, max_chars=100).strip()
+question_court_address = st.text_input(label="Appropriate Court", value=court_decision+', '+court_location, max_chars=100, label_visibility="hidden").strip()
+
 
 next_question = st.button("Next question")
+
+if next_question:
+    st.session_state.question_court = question_court_address
+    switch_page("question_plaintiff")

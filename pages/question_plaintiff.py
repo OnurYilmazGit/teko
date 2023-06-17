@@ -25,20 +25,13 @@ show_sidebar()
 
 
 chapter_spacer()
-st.subheader(f"The Court Finder identified {st.session_state.question_court} as the appropriate court.")
-st.markdown('<div style="text-align: justify;">'
-            'TODO: Text'
-            '</div>', unsafe_allow_html=True)
+st.subheader(f"Please provide your full name and your address")
 st.progress((1.0 / 7) * current_step)
 
-question_city = st.text_input(label="", placeholder="PLZ", max_chars=5).strip()
+question_plaintiff = st.text_input(label="Your information", placeholder="Max Maier (Mieter/Vermieter), Musterstraße 10, 20566 Muster", max_chars=100, label_visibility="hidden").strip()
 
 next_question = st.button("Next question")
+
 if next_question:
-    st.session_state.question_city = question_city
-    unanswered_questions = [key.replace("question_", "").capitalize() for key, value in st.session_state.items() if (value in [None, ""] and key in question_steps.keys())]
-    if unanswered_questions:
-        unanswered_questions_str = ", ".join(unanswered_questions)
-        st.warning(f"Please answer the following question(s): {unanswered_questions_str}")
-    else:
-        switch_page("question_plaintiff")
+    st.session_state.question_plaintiff = question_plaintiff
+    switch_page("question_defendant")
