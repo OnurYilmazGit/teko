@@ -49,7 +49,7 @@ def get_question_dicts():
     question_steps = {"question_crime": "Crime", "question_subject": "Subject", "question_case": "Case",
                       "question_appeal": "Appeal", "question_amount": "Amount", "question_city": "City"}
     document_steps = {"question_court": "Court", "question_plaintiff": "Plaintiff", "question_defendant": "Defendant",
-                      "question_target": "Target", "question_evidence": "Evidence", "question_ending": "Ending"}
+                      "question_target": "Target", "question_amount2": "Amount2", "question_evidence": "Evidence", "question_ending": "Ending"}
     return question_steps, document_steps
 
 
@@ -108,7 +108,7 @@ def show_sidebar():
 
 def get_local_pages():
     pages = ["home", "question_crime", "question_subject", "question_amount", "question_appeal", "question_city",
-            "survey_results", "question_court", "question_plaintiff", "question_defendant", "question_target",
+            "survey_results", "question_court", "question_plaintiff", "question_defendant", "question_target", "question_amount2"
              "question_evidence", "question_ending", "custom_components", "about_us", "faq", "question_case"]
     return pages
 

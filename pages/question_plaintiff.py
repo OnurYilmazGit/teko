@@ -28,7 +28,7 @@ chapter_spacer()
 st.subheader(f"Please provide your full name and your address")
 st.progress((1.0 / 7) * current_step)
 
-question_plaintiff = st.text_input(label="Your information", placeholder="Max Maier (Mieter/Vermieter), Musterstraße 10, 20566 Muster", max_chars=100, label_visibility="hidden").strip()
+question_plaintiff = st.text_input(label="Your information", placeholder="Max Maier (Mieter/Vermieter), Musterstraße 10, 20566 Muster", max_chars=150, label_visibility="hidden").strip()
 
 next_question = st.button("Next question")
 

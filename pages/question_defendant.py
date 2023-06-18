@@ -28,10 +28,10 @@ chapter_spacer()
 st.subheader(f"Please provide the full name and the address of the defendant")
 st.progress((1.0 / 7) * current_step)
 
-question_plaintiff = st.text_input(label="Defendant information", placeholder="Karl Kraus (Mieter/Vermieter), Musterstraße 8 ,20566 Muster", max_chars=100, label_visibility="hidden").strip()
+question_defendant = st.text_input(label="Defendant information", placeholder="Karl Kraus (Mieter/Vermieter), Musterstraße 8 ,20566 Muster", max_chars=100, label_visibility="hidden").strip()
 
 next_question = st.button("Next question")
 
 if next_question:
-    st.session_state.question_plaintiff = question_plaintiff
+    st.session_state.question_defendant = question_defendant
     switch_page("question_target")
