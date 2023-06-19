@@ -25,13 +25,20 @@ show_sidebar()
 
 
 chapter_spacer()
-st.subheader(f"Please provide the relevant evidence for your case")
+st.subheader(f"Please select relevant exemplary evidence or provide your own")
 st.progress((1.0 / 7) * current_step)
 
-question_evidence = st.text_area(label="Your information", value="Muster Evidence....", placeholder="Rückzahlung Mietkaution", height=400, max_chars=1000, label_visibility="hidden").strip()
+evidence_dict = {"Evidence 1": "Desc 1\n", "Evidence 2": "Desc 2\n", "Evidence 3": "Desc 3\n"}
+
+selected_evidence = st.multiselect(label="", options=evidence_dict.keys())
+
+desc_string = ""
+for selection in selected_evidence:
+    desc_string += evidence_dict[selection]
+
+question_evidence = st.text_area(label="label", value=desc_string, height=400, label_visibility="hidden").strip()
 
 next_question = st.button("Next question")
-
 if next_question:
     st.session_state.question_evidence = question_evidence
     switch_page("question_ending")
