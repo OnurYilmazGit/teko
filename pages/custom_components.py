@@ -109,7 +109,8 @@ def show_sidebar():
 def get_local_pages():
     pages = ["home", "question_crime", "question_subject", "question_amount", "question_appeal", "question_city",
             "survey_results", "question_court", "question_plaintiff", "question_defendant", "question_target", "question_amount2"
-             "question_evidence", "question_ending", "custom_components", "about_us", "faq", "question_case"]
+             "question_evidence", "question_ending", "custom_components", "about_us", "faq", "question_case", "question_amount2",
+             "question_evidence"]
     return pages
 
 

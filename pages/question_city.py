@@ -8,7 +8,7 @@ from pages.custom_components import *
 
 st.set_page_config(initial_sidebar_state="expanded", layout="wide")
 hide_pages(get_local_pages())
-current_step = 5
+current_step = 6
 st.session_state.current_page = "Find Court"
 st.session_state.current_index = 3
 
