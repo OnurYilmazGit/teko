@@ -37,4 +37,4 @@ next_question = st.button("Next question")
 
 if next_question:
     st.session_state.question_amount2 = question_amount2
-    switch_page("question_evidence")
+    switch_page("question_explanation")

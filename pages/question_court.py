@@ -26,6 +26,7 @@ show_sidebar()
 
 court_decision = st.session_state.question_court
 court_location = get_address(court_decision)
+court_location = court_location.replace(', ', ',\n')
 
 chapter_spacer()
 st.subheader(f"The Court Finder identified {court_decision} as the appropriate court.")
@@ -34,7 +35,8 @@ st.markdown('<div style="text-align: justify;">'
             'Please confirm the court selection or enter the details of another court.'
             '</div>', unsafe_allow_html=True)
 
-question_court_address = st.text_input(label="Appropriate Court", value=court_decision+', '+court_location, max_chars=150, label_visibility="hidden").strip()
+question_court_address = st.text_area(label="Appropriate Court", value=court_decision+',\n'+court_location, 
+                                      height=200, max_chars=150, label_visibility="hidden").strip()
 
 
 next_question = st.button("Next question")

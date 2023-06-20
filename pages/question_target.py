@@ -28,7 +28,7 @@ chapter_spacer()
 st.subheader(f"Please provide the reason for filing the case")
 st.progress((1.0 / 7) * current_step)
 
-question_target = st.text_input(label="Your information", placeholder="Rückzahlung Mietkaution", max_chars=50, label_visibility="hidden").strip()
+question_target = st.selectbox(label="Your information", options=("Rückzahlung Mietkaution", "ABC"), label_visibility="hidden").strip()
 
 next_question = st.button("Next question")
 
