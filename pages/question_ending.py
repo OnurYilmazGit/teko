@@ -4,6 +4,7 @@ from st_pages import hide_pages, Page, show_pages
 from PIL import Image
 from pathlib import Path
 from pages.custom_components import *
+from fpdf import FPDF
 
 
 st.set_page_config(initial_sidebar_state="expanded", layout="wide")
@@ -25,7 +26,7 @@ show_sidebar()
 
 
 chapter_spacer()
-st.subheader(f"Please provide the relevant evidence for your case")
+st.subheader(f"Please check if the created document is correct.")
 st.progress((1.0 / 7) * current_step)
 
 court = st.session_state.question_court.replace(', ', ',\n')
@@ -36,19 +37,46 @@ amount = str(st.session_state.question_amount2)
 explanation = st.session_state.question_explanation
 evidence = st.session_state.question_evidence
 
+ending_dict = {"Rückzahlung Mietkaution": "Dem Kläger steht gegen den Beklagten ein Anspruch auf Rückzahlung der Kaution gemäß § 566a Satz 2 BGB zu. Nach § 566 Satz 1 BGB tritt der Erwerber der Mietsache in die Verpflichtung zur Rückzahlung der Kaution ein."
+                ,"ABC": "XYZ", "Evidence 3": "XYZ"}
+
+lines = plaintiff.split('\n')
+name = lines[0].strip().replace(',', '')
+name = name.replace('(Vermieter)', '')
+name = name.replace('(Mieter)', '')
+
+ending = ending_dict[target] + "\n\n" + name 
+
 question_ending = st.text_area(label="Your information", value="An das \n\n" + court + "\n\n"
                                                                 + "Klage" + "\n\n" + plaintiff + "\n\n"
                                                                 + "-- Kläger --" + "\n\n" + "gegen" + "\n\n"
                                                                 + defendant + "\n\n" + "-- Beklagter --" + "\n\n" 
                                                                 + "wegen: " + target + "\n\n"
-                                                                + "Streitwert: " + amount + "€\n\n"
+                                                                + "Streitwert: " + amount + " Euro\n\n"
                                                                 + "Ich erhebe Klage und beantrage zu erkennen:" + "\n\n" 
-                                                                + explanation + "\n\nBegründung" + "\n\n"
-                                                                + evidence
+                                                                + explanation + "\n\nBegründung\n\n"
+                                                                + evidence + "\n\n"
+                                                                + ending
                                                                 , height=1500, max_chars=10000, label_visibility="hidden").strip()
 
-next_question = st.button("Next question")
+create_pdf = st.button("Create pdf")
 
-if next_question:
+if create_pdf:
     st.session_state.question_ending = question_ending
-    switch_page("question_ending")
+
+    question_ending = question_ending.encode('latin-1', 'replace').decode('latin-1')
+
+
+    blocks = question_ending.split('\n\n')
+    print(blocks[0], blocks[1], blocks[2], blocks[3])
+
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font('Times', '', 12)
+    for block in blocks:
+        lines = block.split('\n')
+        for line in lines:
+            #pdf.cell(w=0, h=5, txt=line, border=1, ln=1, align = 'L') 
+            pdf.multi_cell(0, 5, line, align='L')
+        pdf.cell(w=0, h=5, txt="", ln=1, align = 'L')
+    pdf.output("Klage " + target + ".pdf")
