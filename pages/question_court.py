@@ -27,6 +27,7 @@ show_sidebar()
 court_decision = st.session_state.question_court
 court_location = get_address(court_decision)
 court_location = court_location.replace(', ', ',\n')
+court_location = court_location.replace(',\nDeutschland', '')
 
 chapter_spacer()
 st.subheader(f"The Court Finder identified {court_decision} as the appropriate court.")

@@ -25,6 +25,7 @@ show_navbar()
 show_sidebar()
 
 address = st.session_state.question_plaintiff
+amount = str(st.session_state.question_amount2)
 
 # Split the string into lines
 lines = address.split('\n')
@@ -40,14 +41,20 @@ new_address = f"{street} in {zipcode_city}"
 
 
 chapter_spacer()
-st.subheader(f"Please select relevant exemplary evidence or provide your own")
+st.subheader(f"Please select relevant evidence or provide your own")
 st.progress((1.0 / 7) * current_step)
 
-evidence_dict = {"Mietvertrag": "Der Kläger begehrt Rückzahlung einer Mietkaution nach beendetem Mietvertrag. Mit Mietvertrag vom dd.mm.yyyy mietete der Kläger vom Beklagten die Mietwohnung in der "
+evidence_dict = {"Kaution: Mietvertrag": "Der Kläger begehrt Rückzahlung einer Mietkaution nach beendetem Mietvertrag. Mit Mietvertrag vom dd.mm.yyyy mietete der Kläger vom Beklagten die Mietwohnung in der "
                  + new_address + " (im Folgenden 'Wohnung').\n\n",
-                 "Evidence 2": "Desc 2\n\n", "Evidence 3": "Desc 3\n\n"}
+                 "Kaution: Überweisungsbeleg": "Am dd.mm.yyyy zahlte der Kläger an den Beklagten vertragsgemäß die Kaution in Höhe von " + amount + " Euro.\n\n",
+                 "Kaution: Kündigungsschreiben": "Das Mietverhältnis endete durch Kündigung des Klägers mit Ablauf des dd.mm.yyyy. Nachdem der Kläger den Beklagten mit Schreiben vom dd.mm.yyyy zur Rückzahlung der Mietkaution aufforderte, erhielt er keine Antwort.\n\n",
+                 "Betriebskosten: Schreiben": "In dem Schreiben vom dd.mm.yyy bestimmte der Kläger eine vorprozessuale Frist zur Vermeidung der vorliegenden Klage zum dd.mm.yyyy. Trotzdem rechnete der Beklagte bislang jedoch nicht über die Betriebskosten ab.\n\n"}
 
 selected_evidence = st.multiselect(label="", options=evidence_dict.keys())
+st.markdown('<div style="text-align: justify;">'
+            'Please refine the evidence provided to fit your case. Please fill in the relevant dates.'
+            '</div>', unsafe_allow_html=True)
+
 
 cnt = 1
 desc_string = ""

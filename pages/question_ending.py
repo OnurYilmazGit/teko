@@ -26,7 +26,7 @@ show_sidebar()
 
 
 chapter_spacer()
-st.subheader(f"Please check if the created document is correct.")
+st.subheader(f"Please make sure that the created document is correct.")
 st.progress((1.0 / 7) * current_step)
 
 court = st.session_state.question_court.replace(', ', ',\n')
@@ -37,15 +37,17 @@ amount = str(st.session_state.question_amount2)
 explanation = st.session_state.question_explanation
 evidence = st.session_state.question_evidence
 
-ending_dict = {"Rückzahlung Mietkaution": "Dem Kläger steht gegen den Beklagten ein Anspruch auf Rückzahlung der Kaution gemäß § 566a Satz 2 BGB zu. Nach § 566 Satz 1 BGB tritt der Erwerber der Mietsache in die Verpflichtung zur Rückzahlung der Kaution ein."
-                ,"ABC": "XYZ", "Evidence 3": "XYZ"}
+ending_dict = {"Rückzahlung Mietkaution": "Dem Kläger steht gegen den Beklagten ein Anspruch auf Rückzahlung der Kaution gemäß § 566a Satz 2 BGB zu. Nach § 566 Satz 1 BGB tritt der Erwerber der Mietsache in die Verpflichtung zur Rückzahlung der Kaution ein.\n\n"+
+                "Weiterer Sach- und Rechtsvortrag einschließlich entsprechender Beweisangebote bleiben ausdrücklich vorbehalten. Sollte das Gericht den bisherigen Sachvortrag oder die bisherigen Beweisangebote des Klägers nicht für ausreichend erachten, oder die hier vertretene Rechtsauffassung nicht teilen, so wird ausdrücklich um einen entsprechenden - ggf. telefonischen - Hinweis gebeten.",
+               "Abrechnung der Nebenkosten": "Der Kläger hat ein Interesse an der Abrechnung, weil er die Kostenentwicklung während seiner Mietzeit nachvollziehen muss. Die Verpflichtung des Beklagten zur Abrechnung der Betriebskosten ergibt sich zudem aus §§ 556 Abs. 3, 259 BGB.\n\n" + 
+                "Weiterer Sach- und Rechtsvortrag einschließlich entsprechender Beweisangebote bleiben ausdrücklich vorbehalten. Sollte das Gericht den bisherigen Sachvortrag oder die bisherigen Beweisangebote des Klägers nicht für ausreichend erachten, oder die hier vertretene Rechtsauffassung nicht teilen, so wird ausdrücklich um einen entsprechenden - ggf. telefonischen - Hinweis gebeten."}
 
 lines = plaintiff.split('\n')
 name = lines[0].strip().replace(',', '')
 name = name.replace('(Vermieter)', '')
 name = name.replace('(Mieter)', '')
 
-ending = ending_dict[target] + "\n\n" + name 
+ending = ending_dict[target] + "\n\n" + "Mit freundlichen Grüßen\n" + name 
 
 question_ending = st.text_area(label="Your information", value="An das \n\n" + court + "\n\n"
                                                                 + "Klage" + "\n\n" + plaintiff + "\n\n"
@@ -53,7 +55,7 @@ question_ending = st.text_area(label="Your information", value="An das \n\n" + c
                                                                 + defendant + "\n\n" + "-- Beklagter --" + "\n\n" 
                                                                 + "wegen: " + target + "\n\n"
                                                                 + "Streitwert: " + amount + " Euro\n\n"
-                                                                + "Ich erhebe Klage und beantrage zu erkennen:" + "\n\n" 
+                                                                + "Erhebe ich Klage und beantrage zu erkennen:" + "\n\n" 
                                                                 + explanation + "\n\nBegründung\n\n"
                                                                 + evidence + "\n\n"
                                                                 + ending
@@ -68,7 +70,6 @@ if create_pdf:
 
 
     blocks = question_ending.split('\n\n')
-    print(blocks[0], blocks[1], blocks[2], blocks[3])
 
     pdf = FPDF()
     pdf.add_page()
@@ -80,3 +81,4 @@ if create_pdf:
             pdf.multi_cell(0, 5, line, align='L')
         pdf.cell(w=0, h=5, txt="", ln=1, align = 'L')
     pdf.output("Klage " + target + ".pdf")
+    st.success('pdf successfully created!', icon="✅")

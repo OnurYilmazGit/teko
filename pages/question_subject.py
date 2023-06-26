@@ -25,7 +25,7 @@ show_sidebar()
 
 
 chapter_spacer()
-st.subheader("What is the subject of dispute in your case?")
+st.subheader("Is your case about residential or commercial rent?")
 st.progress((1.0 / 7) * current_step)
 st.markdown('<div style="text-align: justify;">'
             'The subject of dispute influences the objective juristiction of your case. While disputes about private '
@@ -34,7 +34,7 @@ st.markdown('<div style="text-align: justify;">'
             '</div>', unsafe_allow_html=True)
 
 
-question_subject = st.selectbox(label="", options=("Private Rent", "Commercial Rent"))
+question_subject = st.selectbox(label="", options=("Residential Rent", "Commercial Rent"))
 next_question = st.button("Next Question")
 if next_question:
     st.session_state.question_subject = question_subject

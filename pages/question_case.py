@@ -26,13 +26,13 @@ show_sidebar()
 
 # Content: Question
 chapter_spacer()
-st.subheader("Which case do you want to file?")
+st.subheader("What is the subject of dispute in your case?")
 st.progress((1.0 / 7) * current_step)
-st.markdown('<div style="text-align: justify;">'
-            'TODO: Text'
-            '</div>', unsafe_allow_html=True)
+#st.markdown('<div style="text-align: justify;">'
+#            'TODO: Text'
+#            '</div>', unsafe_allow_html=True)
 
-question_case = st.selectbox(label="", options=("TODO", "TODO"))
+question_case = st.selectbox(label="", options=("Rückzahlung Mietkaution", "Abrechnung der Nebenkosten"), label_visibility="hidden")
 
 next_question = st.button("Next Question")
 if next_question:

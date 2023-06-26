@@ -24,12 +24,19 @@ show_navbar()
 show_sidebar()
 
 amount = str(st.session_state.question_amount2)
+plaintiff = st.session_state.question_plaintiff
+lines = plaintiff.split("\n")
+city = ', '.join([line.rstrip(',') for line in lines[1:]])
+
 target = st.session_state.question_target
 
 explanation_dict = {"Rückzahlung Mietkaution": "Der Beklagte wird verurteilt, an den Kläger " + amount + 
-                 " Euro zuzüglich Zinsen in Höhe fünf Prozentpunkten über dem Basiszinssatz aus diesem Betrag seit Rechtshängigkeit zu zahlen."
-                 + "\n\nFür den Fall, dass das Gericht das schriftliche Vorverfahren anordnet, wird beantragt, ein Versäumnisurteil (§ 331 Absatz 3 ZPO) zu erlassen, sofern der Beklagte trotz Aufforderung seine Verteidigungsabsicht nicht zeitgerecht anzeigt (§ 276 Absatz 1 ZPO).\n\n",
-                 "ABC": "XYZ\n\n", "Evidence 3": "Desc 3\n"}
+                        " Euro zuzüglich Zinsen in Höhe fünf Prozentpunkten über dem Basiszinssatz aus diesem Betrag seit Rechtshängigkeit zu zahlen."+
+                        "\n\nFür den Fall, dass das Gericht das schriftliche Vorverfahren anordnet, wird beantragt, ein Versäumnisurteil (§ 331 Absatz 3 ZPO) zu erlassen, sofern der Beklagte trotz Aufforderung seine Verteidigungsabsicht nicht zeitgerecht anzeigt (§ 276 Absatz 1 ZPO).\n\n",
+                    "Abrechnung der Nebenkosten": "Der Beklagte wird verurteilt, über die in der " + city +
+                        " gelegene Wohnung in der Zeit vom 01.01 - 31.12.yyyy angefallenen Betriebskosten abzurechnen.\n\n"+
+                        "Der Kläger mietete die im Antrag genauer bezeichnete Wohnung im Jahr yyyy an. Der Kläger hat für die Betriebskosten insgesamt eine monatliche Vorauszahlung in Höhe von XX Euro zu leisten." +
+                        " Die gesetzlichen Bestimmungen sehen eine Frist zur Abrechnung innerhalb von spätestens zwölf Monaten seit Ende des Abrechnungszeitraumes vor. Der Beklage hätte damit über die Betriebskosten spätestens bis zum 31.12.yyyy abrechnen müssen. Obgleich der Kläger vor der Abrechnung auf ebendiese Pflicht hingewiesen hat, blieb der Beklagte untätig."}
 
 
 explanation = explanation_dict[target]

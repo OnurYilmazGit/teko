@@ -23,15 +23,23 @@ for attr in list(question_steps.keys()) + list(document_steps.keys()):
 show_navbar()
 show_sidebar()
 
+target = st.session_state.question_target
 
 chapter_spacer()
 st.subheader(f"Please confirm the monetary amount of dispute in your case")
 st.progress((1.0 / 7) * current_step)
-st.markdown('<div style="text-align: justify;">'
-            'Please confirm the amount of dispute or enter the another amount.'
+if target == "Abrechnung der Nebenkosten":
+    st.markdown('<div style="text-align: justify;">'
+            'Please confirm the amount of dispute or enter the correct amount. Please note that in cases involving utility bills, the amount is usually set at one-third of the utility bill paid for that year.'
             '</div>', unsafe_allow_html=True)
+    amount = int(int(st.session_state.question_amount)/3)
+elif target == "Rückzahlung Mietkaution":
+    st.markdown('<div style="text-align: justify;">'
+            'Please confirm the amount of dispute or enter the correct amount.'
+            '</div>', unsafe_allow_html=True)
+    amount = int(st.session_state.question_amount)
 
-question_amount2 = st.number_input(label="The amount of dispute", value=int(st.session_state.question_amount),  min_value=1, label_visibility="hidden")
+question_amount2 = st.number_input(label="The amount of dispute", value=amount,  min_value=1, label_visibility="hidden")
 
 next_question = st.button("Next question")
 

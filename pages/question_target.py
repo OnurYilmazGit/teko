@@ -28,7 +28,21 @@ chapter_spacer()
 st.subheader(f"Please provide the reason for filing the case")
 st.progress((1.0 / 7) * current_step)
 
-question_target = st.selectbox(label="Your information", options=("Rückzahlung Mietkaution", "ABC"), label_visibility="hidden").strip()
+question_target = st.selectbox(label="Your information", options=("Rückzahlung Mietkaution", "Abrechnung der Nebenkosten"), label_visibility="hidden").strip()
+
+if question_target == "Rückzahlung Mietkaution":
+    st.markdown('<div style="text-align: justify;">'
+            'Please note that you can usually get your deposit back at the earliest 6 months after handing over the rental property.'
+            '<br>''<br>'
+            '</div>', unsafe_allow_html=True)
+    
+elif question_target == "Abrechnung der Nebenkosten":
+    st.markdown('<div style="text-align: justify;">'
+            'Please note that you must give the landlord a period of 12 months after the end of the billing period until he needs to provide you with the utility bill.'
+            '<br>''<br>'
+            '</div>', unsafe_allow_html=True)
+
+
 
 next_question = st.button("Next question")
 

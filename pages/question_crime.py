@@ -26,7 +26,7 @@ show_sidebar()
 
 # Content: Question
 chapter_spacer()
-st.subheader("Which court_type of proceeding do you have?")
+st.subheader("To which area of law is your case assigned?")
 st.progress((1.0 / 7) * current_step)
 st.markdown('<div style="text-align: justify;">'
             'TEKO is currently only able to provide support in tenancy law. For other issues, finding a court by '
@@ -34,7 +34,7 @@ st.markdown('<div style="text-align: justify;">'
             'by a citizen. Please refer to your subpoena for the appropriate court of a criminal proceeding.'
             '</div>', unsafe_allow_html=True)
 
-question_crime = st.selectbox(label="", options=("Tenancy Law", "Criminal Proceeding"))
+question_crime = st.selectbox(label="", options=("Tenancy Law", "Criminal Proceeding", "Other"))
 
 next_question = st.button("Next Question")
 if next_question and question_crime == "Tenancy Law":
