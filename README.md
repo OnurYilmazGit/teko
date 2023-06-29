@@ -57,7 +57,7 @@ In order to run the application, you need to provide your Google Maps and OpenAI
 7.  Click "Create credentials" and select "API key".
 8.  Your new API key will be displayed. Click "Close".
 
-Remember, do not share these keys with anyone as they can be used to access services on your behalf. Once you have these keys, refer back to step 5 of the previous instructions to add these keys to your `.env` file.
+Remember, do not share these keys with anyone as they can be used to access services on your behalf.
 
 Run the Application
 -------------------
