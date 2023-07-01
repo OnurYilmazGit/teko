@@ -37,7 +37,7 @@ next_question = st.button("Next question")
 if next_question:
     pattern = r'^[A-Za-z\s\(\).,]+,\s*\n[A-Za-zäöüß\. ]+ \d+,\s*\n\d{5} [A-Za-zäöüß ]+$'
     if bool(re.match(pattern, question_plaintiff)):
-        st.session_state.question_defendant = question_plaintiff
+        st.session_state.question_plaintiff = question_plaintiff
         switch_page("question_defendant")
     else:
         st.warning(f"Please provide a correct address format.")
