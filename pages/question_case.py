@@ -32,7 +32,7 @@ st.progress((1.0 / 7) * current_step)
 #            'TODO: Text'
 #            '</div>', unsafe_allow_html=True)
 
-question_case = st.selectbox(label="", options=("Rückzahlung Mietkaution", "Abrechnung der Nebenkosten"), label_visibility="hidden")
+question_case = st.selectbox(label="", options=("Repayment of the rental deposit", "Settlement of the incidental rental costs", "Other"), label_visibility="hidden")
 
 next_question = st.button("Next Question")
 if next_question:

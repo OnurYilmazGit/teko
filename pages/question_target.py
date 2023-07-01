@@ -28,15 +28,15 @@ chapter_spacer()
 st.subheader(f"Please provide the reason for filing the case")
 st.progress((1.0 / 7) * current_step)
 
-question_target = st.selectbox(label="Your information", options=("Rückzahlung Mietkaution", "Abrechnung der Nebenkosten"), label_visibility="hidden").strip()
+question_target = st.selectbox(label="Your information", options=("Repayment of the rental deposit", "Settlement of the incidental rental costs"), label_visibility="hidden").strip()
 
-if question_target == "Rückzahlung Mietkaution":
+if question_target == "Repayment of the rental deposit":
     st.markdown('<div style="text-align: justify;">'
             'Please note that you can usually get your deposit back at the earliest 6 months after handing over the rental property.'
             '<br>''<br>'
             '</div>', unsafe_allow_html=True)
     
-elif question_target == "Abrechnung der Nebenkosten":
+elif question_target == "Settlement of the incidental rental costs":
     st.markdown('<div style="text-align: justify;">'
             'Please note that you must give the landlord a period of 12 months after the end of the billing period until he needs to provide you with the utility bill.'
             '<br>''<br>'
@@ -47,5 +47,8 @@ elif question_target == "Abrechnung der Nebenkosten":
 next_question = st.button("Next question")
 
 if next_question:
-    st.session_state.question_target = question_target
+    if question_target == "Repayment of the rental deposit":
+        st.session_state.question_target = "Rückzahlung Mietkaution"
+    elif question_target == "Settlement of the incidental rental costs":
+        st.session_state.question_target = "Abrechnung der Nebenkosten"
     switch_page("question_amount2")

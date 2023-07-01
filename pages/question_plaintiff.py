@@ -3,6 +3,7 @@ from streamlit_extras.switch_page_button import switch_page
 from st_pages import hide_pages, Page, show_pages
 from PIL import Image
 from pathlib import Path
+import re
 from pages.custom_components import *
 
 
@@ -34,5 +35,9 @@ question_plaintiff = st.text_area(label="Your information", placeholder="Max Mai
 next_question = st.button("Next question")
 
 if next_question:
-    st.session_state.question_plaintiff = question_plaintiff
-    switch_page("question_defendant")
+    pattern = r'^[A-Za-z\s\(\).,]+,\s*\n[A-Za-zäöüß\. ]+ \d+,\s*\n\d{5} [A-Za-zäöüß ]+$'
+    if bool(re.match(pattern, question_plaintiff)):
+        st.session_state.question_defendant = question_plaintiff
+        switch_page("question_defendant")
+    else:
+        st.warning(f"Please provide a correct address format.")

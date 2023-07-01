@@ -62,7 +62,7 @@ def show_sidebar():
 
     with st.sidebar:
 
-        with st.expander("Steps to find a court"):
+        with st.expander("Find the correct court"):
 
             for key, value in question_steps.items():
 
@@ -84,7 +84,7 @@ def show_sidebar():
                         if subject:
                             switch_page(key)
 
-        with st.expander("Steps to create documents"):
+        with st.expander("Create your lawsuit document"):
 
             for key, value in document_steps.items():
 

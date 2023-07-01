@@ -44,11 +44,17 @@ chapter_spacer()
 st.subheader(f"Please select relevant evidence or provide your own")
 st.progress((1.0 / 7) * current_step)
 
-evidence_dict = {"Kaution: Mietvertrag": "Der Kläger begehrt Rückzahlung einer Mietkaution nach beendetem Mietvertrag. Mit Mietvertrag vom dd.mm.yyyy mietete der Kläger vom Beklagten die Mietwohnung in der "
+translation_dict = {"Rental deposit: rental contract": "Kaution: Mietvertrag",
+                    "Rental deposit: transfer receipt": "Kaution: Überweisungsbeleg",
+                    "Rental deposit: letter of termination": "Kaution: Kündigungsschreiben",
+                    "Incidental rental costs: letter": "Betriebskosten: Schreiben"
+                    }
+
+evidence_dict = {"Rental deposit: rental contract": "Der Kläger begehrt Rückzahlung einer Mietkaution nach beendetem Mietvertrag. Mit Mietvertrag vom dd.mm.yyyy mietete der Kläger vom Beklagten die Mietwohnung in der "
                  + new_address + " (im Folgenden 'Wohnung').\n\n",
-                 "Kaution: Überweisungsbeleg": "Am dd.mm.yyyy zahlte der Kläger an den Beklagten vertragsgemäß die Kaution in Höhe von " + amount + " Euro.\n\n",
-                 "Kaution: Kündigungsschreiben": "Das Mietverhältnis endete durch Kündigung des Klägers mit Ablauf des dd.mm.yyyy. Nachdem der Kläger den Beklagten mit Schreiben vom dd.mm.yyyy zur Rückzahlung der Mietkaution aufforderte, erhielt er keine Antwort.\n\n",
-                 "Betriebskosten: Schreiben": "In dem Schreiben vom dd.mm.yyy bestimmte der Kläger eine vorprozessuale Frist zur Vermeidung der vorliegenden Klage zum dd.mm.yyyy. Trotzdem rechnete der Beklagte bislang jedoch nicht über die Betriebskosten ab.\n\n"}
+                 "Rental deposit: transfer receipt": "Am dd.mm.yyyy zahlte der Kläger an den Beklagten vertragsgemäß die Kaution in Höhe von " + amount + " Euro.\n\n",
+                 "Rental deposit: letter of termination": "Das Mietverhältnis endete durch Kündigung des Klägers mit Ablauf des dd.mm.yyyy. Nachdem der Kläger den Beklagten mit Schreiben vom dd.mm.yyyy zur Rückzahlung der Mietkaution aufforderte, erhielt er keine Antwort.\n\n",
+                 "Incidental rental costs: letter": "In dem Schreiben vom dd.mm.yyy bestimmte der Kläger eine vorprozessuale Frist zur Vermeidung der vorliegenden Klage zum dd.mm.yyyy. Trotzdem rechnete der Beklagte bislang jedoch nicht über die Betriebskosten ab.\n\n"}
 
 selected_evidence = st.multiselect(label="", options=evidence_dict.keys())
 st.markdown('<div style="text-align: justify;">'
@@ -56,11 +62,13 @@ st.markdown('<div style="text-align: justify;">'
             '</div>', unsafe_allow_html=True)
 
 
+
 cnt = 1
 desc_string = ""
 for selection in selected_evidence:
+    selection_ger = translation_dict[selection]
     desc_string += evidence_dict[selection] 
-    desc_string += "Beweis: Anlage K " + str(cnt) + " - " + selection + " vom dd.mm.yyyy (Kopie)\n\n"
+    desc_string += "Beweis: Anlage K " + str(cnt) + " - " + selection_ger + " vom dd.mm.yyyy (Kopie)\n\n"
     cnt += 1
 
 question_evidence = st.text_area(label="label", value=desc_string, height=400, label_visibility="hidden").strip()
