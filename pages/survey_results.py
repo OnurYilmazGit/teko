@@ -8,7 +8,6 @@ import folium
 from pages.custom_components import *
 from streamlit_extras.card import card
 from src.decision_tree import *
-from src.open_ai_api import *
 from src.google_maps import *
 from src.web_scraper import *
 
