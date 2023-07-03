@@ -61,9 +61,9 @@ with card1:
         card(title="2023", text="Gründungsjahr", image="https://images.unsplash.com/photo-1561473905-67b476b45ed2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1359&q=80")
 with card2:
     if st.session_state.current_lang == "English":
-        card(title="250 Euros", text="Series A Funding", image="https://images.unsplash.com/photo-1527788263495-3518a5c1c42d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1508&q=80")
+        card(title="250 Euros", text="Pre-Seed Funding", image="https://images.unsplash.com/photo-1527788263495-3518a5c1c42d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1508&q=80")
     else:
-        card(title="250 Euros", text="Serie A Finanzierung", image="https://images.unsplash.com/photo-1527788263495-3518a5c1c42d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1508&q=80")
+        card(title="250 Euros", text="Pre-Seed Finanzierung", image="https://images.unsplash.com/photo-1527788263495-3518a5c1c42d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1508&q=80")
 with card3:
     if st.session_state.current_lang == "English":
         card(title="178", text="Cups of Coffee", image="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80")
