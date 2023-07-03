@@ -6,7 +6,7 @@ def find_court_type(subject, appeal, amount):
     explanation = ""
     amount = int(amount)
 
-    if subject == "Residential Rent":
+    if subject in ["Residential Rent", "Private Miete"]:
         court_type = "Amtsgericht"
         explanation += "Your submitted subject is residential rent. The Amtsgericht is responsible for this subject " \
                        "independently from the monetary amount of dispute."
@@ -21,7 +21,7 @@ def find_court_type(subject, appeal, amount):
             court_type = "Landgericht"
             explanation += f"For your submitted amount of {amount} Euros the {court_type} is responsible. "
 
-    if appeal == "Yes":
+    if appeal in ["Yes", "Ja"]:
         court_type = "Oberlandesgericht"
         explanation = "For cases with an appeal against the decisions of the Amtsgericht or Landgericht, the " \
                       f"{court_type} is responsible independently of subject and amount. "

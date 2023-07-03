@@ -11,8 +11,13 @@ from src.google_maps import *
 st.set_page_config(initial_sidebar_state="expanded", layout="wide")
 hide_pages(get_local_pages())
 current_step = 1
-st.session_state.current_page = "Find Court"
-st.session_state.current_index = 3
+if st.session_state.current_lang == "English":
+    st.session_state.current_page = "Find Court"
+    st.session_state.current_index = 3
+else:
+    st.session_state.current_page = "Gericht Finden"
+    st.session_state.current_index = 3
+
 
 
 # initialize session state attributes

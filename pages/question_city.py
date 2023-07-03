@@ -9,8 +9,13 @@ from pages.custom_components import *
 st.set_page_config(initial_sidebar_state="expanded", layout="wide")
 hide_pages(get_local_pages())
 current_step = 6
-st.session_state.current_page = "Find Court"
-st.session_state.current_index = 3
+if st.session_state.current_lang == "English":
+    st.session_state.current_page = "Find Court"
+    st.session_state.current_index = 3
+else:
+    st.session_state.current_page = "Gericht Finden"
+    st.session_state.current_index = 3
+
 
 
 # initialize session state attributes
@@ -25,23 +30,48 @@ show_sidebar()
 
 
 chapter_spacer()
-st.subheader("In which city do you live? Please provide the PLZ.")
-st.markdown('<div style="text-align: justify;">'
-            'This information is necessary to provide you with the respective court in your area.'
-            '</div>', unsafe_allow_html=True)
+if st.session_state.current_lang == "English":
+    st.subheader("In which city do you live? Please provide the PLZ.")
+    st.markdown('<div style="text-align: justify;">'
+                'This information is necessary to provide you with the respective court in your area.'
+                '</div>', unsafe_allow_html=True)
+else:
+    st.subheader("In welcher Stadt wohnen Sie? Bitte geben Sie die PLZ an.")
+    st.markdown('<div style="text-align: justify;">'
+                'Diese Information is erforderlich um das zuständige Gericht in Ihrer Region zu finden.'
+                '</div>', unsafe_allow_html=True)
 st.progress((1.0 / 7) * current_step)
 
-question_city = st.text_input(label="", placeholder="PLZ", help="The PLZ contains 5 digits and refers to one specific city.", max_chars=5).strip()
+if st.session_state.current_lang == "English":
+    question_city = st.text_input(label="", placeholder="PLZ", help="The PLZ contains 5 digits and refers to one specific city.", max_chars=5).strip()
+else:
+    question_city = st.text_input(label="", placeholder="PLZ", help="Die PLZ besteht aus fünf Ziffern und bezieht sich auf Ihren Wohnort", max_chars=5).strip()
 
-next_question = st.button("Finalize Test")
-if next_question:
-    if (len(question_city) is not 5) or (not question_city.isdigit()):
-        st.warning(f"Please insert a correct PLZ.")
-    else:
-        st.session_state.question_city = question_city
-        unanswered_questions = [key.replace("question_", "").capitalize() for key, value in st.session_state.items() if (value in [None, ""] and key in question_steps.keys())]
-        if unanswered_questions:
-            unanswered_questions_str = ", ".join(unanswered_questions)
-            st.warning(f"Please answer the following question(s): {unanswered_questions_str}")
+if st.session_state.current_lang == "English":
+    next_question = st.button("Finalize Test")
+    if next_question:
+        if (len(question_city) is not 5) or (not question_city.isdigit()):
+            st.warning(f"Please insert a correct PLZ.")
         else:
-            switch_page("survey_results")
+            st.session_state.question_city = question_city
+            unanswered_questions = [key.replace("question_", "").capitalize() for key, value in st.session_state.items() if (value in [None, ""] and key in question_steps.keys())]
+            if unanswered_questions:
+                unanswered_questions_str = ", ".join(unanswered_questions)
+                st.warning(f"Please answer the following question(s): {unanswered_questions_str}")
+            else:
+                switch_page("survey_results")
+
+else:
+    next_question = st.button("Fragebogen abschließen")
+    if next_question:
+        if (len(question_city) is not 5) or (not question_city.isdigit()):
+            st.warning(f"Bitte geben Sie eine korrekte PLZ ein.")
+        else:
+            st.session_state.question_city = question_city
+            unanswered_questions = [key.replace("question_", "").capitalize() for key, value in st.session_state.items()
+                                    if (value in [None, ""] and key in question_steps.keys())]
+            if unanswered_questions:
+                unanswered_questions_str = ", ".join(unanswered_questions)
+                st.warning(f"Bitte beantworten Sie die folgende(n) Frage(n): {unanswered_questions_str}")
+            else:
+                switch_page("survey_results")

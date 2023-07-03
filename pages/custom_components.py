@@ -66,8 +66,9 @@ def show_navbar():
                 navbar = "Gericht Finden"
             else:
                 print("Error")
-
+    print(navbar, st.session_state.current_page)
     if navbar != st.session_state.current_page:
+        print("Test")
         if navbar in ["Home", "Startseite"]:
             switch_page("home")
         if navbar in ["About Us", "Über Uns"]:
