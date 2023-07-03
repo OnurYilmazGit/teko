@@ -27,7 +27,7 @@ show_sidebar()
 chapter_spacer()
 st.subheader("In which city do you live? Please provide the PLZ.")
 st.markdown('<div style="text-align: justify;">'
-            'TODO: Text'
+            'This information is necessary to provide you with the respective court in your area.'
             '</div>', unsafe_allow_html=True)
 st.progress((1.0 / 7) * current_step)
 

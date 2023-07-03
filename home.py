@@ -50,19 +50,42 @@ with benefit1:
     with col2:
         key_image = Image.open(current_path + "/assets/key.png")
         st.image(key_image)
+    _, col2, _ = st.columns([0.28, 0.44, 0.28])
+    with col2:
         st.subheader("Access to Law")
+    _, col2, _ = st.columns([0.15, 0.7, 0.15])
+    with col2:
+        st.markdown('<div style="text-align: justify;">'
+                    'We strongly believe that every citizen should have access to justice - with TEKO this will be '
+                    'ensured.'
+                    '</div>', unsafe_allow_html=True)
 with benefit2:
     _, col2, _ = st.columns([0.3, 0.4, 0.3])
     with col2:
         decision_image = Image.open(current_path + "/assets/decision-tree.png")
         st.image(decision_image)
+    _, col2, _ = st.columns([0.24, 0.52, 0.24])
+    with col2:
         st.subheader("Intuitive Process")
+    _, col2, _ = st.columns([0.15, 0.7, 0.15])
+    with col2:
+        st.markdown('<div style="text-align: justify;">'
+                    'Our easy-to-understand question-and-answer format guides you through the process, with our '
+                    'decision tree algorithm providing highly accurate results.'
+                    '</div>', unsafe_allow_html=True)
 with benefit3:
     _, col2, _ = st.columns([0.3, 0.4, 0.3])
     with col2:
         coin_image = Image.open(current_path + "/assets/coin.png")
         st.image(coin_image)
+    _, col2, _ = st.columns([0.16, 0.68, 0.16])
+    with col2:
         st.subheader("Time and Cost Savings")
+    _, col2, _ = st.columns([0.15, 0.7, 0.15])
+    with col2:
+        st.markdown('<div style="text-align: justify;">'
+                    'No more wasting time and money - you have all valid information in one place!'
+                    '</div>', unsafe_allow_html=True)
 
 
 chapter_spacer()

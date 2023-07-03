@@ -26,7 +26,7 @@ show_sidebar()
 
 
 chapter_spacer()
-st.subheader(f"Please provide your full name and your address")
+st.subheader(f"What is your full name and address?")
 st.progress((1.0 / 7) * current_step)
 
 question_plaintiff = st.text_area(label="Your information", placeholder="Max Maier (Mieter/Vermieter),\nMusterstraße 10,\n20566 Muster",

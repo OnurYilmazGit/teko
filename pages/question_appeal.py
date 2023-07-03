@@ -27,7 +27,8 @@ show_sidebar()
 chapter_spacer()
 st.subheader("Has this case already been negotiated in front of court? Do you want to appeal?")
 st.markdown('<div style="text-align: justify;">'
-            'TODO: Text'
+            'Appeals against decisions of an Amtsgericht or Landesgericht are usually negotiated at the '
+            'Oberlandesgericht.'
             '</div>', unsafe_allow_html=True)
 st.progress((1.0 / 7) * current_step)
 

@@ -41,7 +41,7 @@ new_address = f"{street} in {zipcode_city}"
 
 
 chapter_spacer()
-st.subheader(f"Please select relevant evidence or provide your own")
+st.subheader(f"Which evidence can you provide for this case?")
 st.progress((1.0 / 7) * current_step)
 
 translation_dict = {"Rental deposit: rental contract": "Kaution: Mietvertrag",

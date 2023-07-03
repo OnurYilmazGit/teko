@@ -68,7 +68,7 @@ profiles = [
         "image": f"{current_path}/assets/eric-circle.jpeg",
         "description": "Eric is currently pursuing his studies in Information Systems at the Technical University of "
                        "Munich. "
-                       "His work experience in artificial intelligence at international groups like Siemens and "
+                       "His work experience in Artificial Intelligence at international groups like Siemens and "
                        "Infineon bought him hands-on skills for bringing technological advances to the legal sector. "
                        "An interest and knowledge in entrepreneurship enable him to create an impact to all aspects of "
                        "our company."
@@ -78,9 +78,9 @@ profiles = [
         "image": f"{current_path}/assets/klare-circle.jpeg",
         "description": "Klare is presently engaged in her Management and Technology studies at the Technical University "
                        "of Munich. "
-                       "Through her professional background in at esteemed organizations such as the Technical "
-                       "University of Munich and Rohde & Schwarz, she has gained practical expertise "
-                       "in applying Marketing strategies to practice. "
+                       " Through her professional background at a TUM research insititute she gained practical "
+                       "experience in conducting  industrial projects. Furthermore, she has developed marketing skills "
+                       "in her work at Rohde & Schwarz."
                        "Her contribution brings the cherry on top of our user-friendly solution."
     },  
     

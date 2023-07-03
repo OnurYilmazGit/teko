@@ -26,7 +26,7 @@ show_sidebar()
 
 
 chapter_spacer()
-st.subheader(f"Please provide the full name and the address of the defendant")
+st.subheader(f"What is the full name and address of the defendant?")
 st.progress((1.0 / 7) * current_step)
 
 question_defendant = st.text_area(label="Defendant information", placeholder="Karl Kraus (Mieter/Vermieter),\nMusterstraße 8,\n20566 Muster", 

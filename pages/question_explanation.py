@@ -44,8 +44,11 @@ explanation = explanation_dict[target]
 print(explanation)
 
 chapter_spacer()
-st.subheader(f"Please give a concise explanation for your case. This should include what you want to achieve with your case and the description of the facts.")
+st.subheader(f"Please give a concise explanation for your case.")
 st.progress((1.0 / 7) * current_step)
+st.markdown('<div style="text-align: justify;">'
+            'The explanation should include what you want to achieve with your case and the description of the facts.'
+            '</div>', unsafe_allow_html=True)
 
 
 question_explanation = st.text_area(label="Concise Explanation for the case.", value=explanation, placeholder="Concise Explanation for the case.",

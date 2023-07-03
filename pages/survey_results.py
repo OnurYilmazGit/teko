@@ -54,9 +54,9 @@ with info_col:
 
     components_spacer()
     if court_type == "Amtsgericht":
-        st.warning("You don't need a lawyer at this court!")
+        st.warning("You don't need a lawyer because your responsible court is an Amtsgericht!")
     else:
-        st.warning("You need a lawyer at this court!")
+        st.warning("You need a lawyer because your responsible court is and Landesgericht!")
 with map_col:
     folium_map = folium.Map(location=court_coordinates, zoom_start=16)
     folium.Marker(court_coordinates, popup="Liberty Bell", tooltip="Liberty Bell").add_to(folium_map)
