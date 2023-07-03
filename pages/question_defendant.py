@@ -2,6 +2,7 @@ import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
 from st_pages import hide_pages, Page, show_pages
 from PIL import Image
+import re
 from pathlib import Path
 from pages.custom_components import *
 
@@ -34,5 +35,10 @@ question_defendant = st.text_area(label="Defendant information", placeholder="Ka
 next_question = st.button("Next question")
 
 if next_question:
-    st.session_state.question_defendant = question_defendant
-    switch_page("question_target")
+    pattern = r'^[A-Za-z\s\(\).,]+,\s*\n[A-Za-zäöüß\. ]+ \d+,\s*\n\d{5} [A-Za-zäöüß ]+$'
+    if bool(re.match(pattern, question_defendant)):
+        st.session_state.question_defendant = question_defendant
+        switch_page("question_target")
+    else:
+        st.warning(f"Please provide a correct address format.")
+

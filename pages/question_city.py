@@ -31,14 +31,17 @@ st.markdown('<div style="text-align: justify;">'
             '</div>', unsafe_allow_html=True)
 st.progress((1.0 / 7) * current_step)
 
-question_city = st.text_input(label="", placeholder="PLZ", max_chars=5).strip()
+question_city = st.text_input(label="", placeholder="PLZ", help="The PLZ contains 5 digits and refers to one specific city.", max_chars=5).strip()
 
 next_question = st.button("Finalize Test")
 if next_question:
-    st.session_state.question_city = question_city
-    unanswered_questions = [key.replace("question_", "").capitalize() for key, value in st.session_state.items() if (value in [None, ""] and key in question_steps.keys())]
-    if unanswered_questions:
-        unanswered_questions_str = ", ".join(unanswered_questions)
-        st.warning(f"Please answer the following question(s): {unanswered_questions_str}")
+    if (len(question_city) is not 5) or (not question_city.isdigit()):
+        st.warning(f"Please insert a correct PLZ.")
     else:
-        switch_page("survey_results")
+        st.session_state.question_city = question_city
+        unanswered_questions = [key.replace("question_", "").capitalize() for key, value in st.session_state.items() if (value in [None, ""] and key in question_steps.keys())]
+        if unanswered_questions:
+            unanswered_questions_str = ", ".join(unanswered_questions)
+            st.warning(f"Please answer the following question(s): {unanswered_questions_str}")
+        else:
+            switch_page("survey_results")

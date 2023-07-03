@@ -28,23 +28,12 @@ Once Python is installed and the virtual environment is activated, you can insta
 Set Up API Keys
 ---------------
 
-In order to run the application, you need to provide your Google Maps and OpenAI API keys. These keys should be saved in a `.env` file located in the project directory. You can create this file manually using a text editor, or by running the following command in your terminal:
+In order to run the application, you need to provide your Google Maps keys. These keys should be saved in a `.env` file located in the project directory. You can create this file manually using a text editor, or by running the following command in your terminal:
 
     echo "GOOGLE_MAPS_API_KEY=<your-google-maps-api-key>" > .env
-    echo "OPENAI_API_KEY=<your-openai-api-key>" >> .env
 
-**Note:** please replace <your-google-maps-api-key> and <your-openai-api-key> with your actual keys.
+**Note:** please replace <your-google-maps-api-key> with your actual keys.
 
-### OpenAI API Key
-
-1.  Go to the [OpenAI website](https://openai.com/).
-2.  Click on "Sign In" in the top right corner if you have an account, or "Sign Up" if you don't.
-3.  Once you've logged in, you'll be taken to the dashboard.
-4.  Click on the API keys section on the left side of the dashboard.
-5.  Click on the "Create new key" button.
-6.  Give your key a name and optionally set a description.
-7.  Click on "Create key".
-8.  You will now be shown your key. Make sure to save this key somewhere secure as you won't be able to see it again.
 
 ### Google Maps API Key
 

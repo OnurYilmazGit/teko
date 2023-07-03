@@ -3,6 +3,7 @@ from streamlit_extras.switch_page_button import switch_page
 from st_pages import hide_pages, Page, show_pages
 from PIL import Image
 from pathlib import Path
+import re
 from pages.custom_components import *
 from src.google_maps import *
 
@@ -25,6 +26,10 @@ show_navbar()
 show_sidebar()
 
 court_decision = st.session_state.question_court
+lines = court_decision.split('\n')
+court_decision = lines[0]
+court_decision = court_decision.replace(',', '')
+
 court_location = get_address(court_decision)
 court_location = court_location.replace(', ', ',\n')
 court_location = court_location.replace(',\nDeutschland', '')
