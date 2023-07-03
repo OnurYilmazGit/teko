@@ -24,24 +24,57 @@ def show_navbar():
     with col4:
         st.text("")
         lang_bar = option_menu(None, ["English", "Deutsch"], icons=['translate', 'translate'], menu_icon="cast",
-                               default_index=0, orientation="horizontal", styles=lang_bar_style)
+                               default_index=st.session_state.lang_index, orientation="horizontal", styles=lang_bar_style)
 
     navbar_style = {
         "nav-link-selected": {"background-color": "black"}
     }
-
-    navbar = option_menu(None, ["Home", "About Us", "FAQ", "Find Court"],
+    if st.session_state.current_lang == "English":
+        navbar = option_menu(None, ["Home", "About Us", "FAQ", "Find Court"],
                          icons=['house', 'people', "question-circle", "book"], menu_icon="cast", default_index=st.session_state.current_index,
                          orientation="horizontal", styles=navbar_style)
+    else:
+        navbar = option_menu(None, ["Startseite", "Über Uns", "FAQ", "Gericht Finden"],
+                         icons=['house', 'people', "question-circle", "book"], menu_icon="cast",
+                         default_index=st.session_state.current_index,
+                         orientation="horizontal", styles=navbar_style)
+
+    if lang_bar != st.session_state.current_lang:
+        if lang_bar == "English":
+            st.session_state.current_lang = "English"
+            st.session_state.lang_index = 0
+            if st.session_state.current_page == "Startseite":
+                navbar = "Home"
+            elif st.session_state.current_page == "Über Uns":
+                navbar = "About Us"
+            elif st.session_state.current_page == "FAQ":
+                navbar = "FAQ_de"
+            elif st.session_state.current_page == "Gericht Finden":
+                navbar = "Find Court"
+            else:
+                print("Error")
+        if lang_bar == "Deutsch":
+            st.session_state.current_lang = "Deutsch"
+            st.session_state.lang_index = 1
+            if st.session_state.current_page == "Home":
+                navbar = "Startseite"
+            elif st.session_state.current_page == "About Us":
+                navbar = "Über Uns"
+            elif st.session_state.current_page == "FAQ":
+                navbar = "FAQ2"
+            elif st.session_state.current_page == "Find Court":
+                navbar = "Gericht Finden"
+            else:
+                print("Error")
 
     if navbar != st.session_state.current_page:
-        if navbar == "Home":
+        if navbar in ["Home", "Startseite"]:
             switch_page("home")
-        if navbar == "About Us":
+        if navbar in ["About Us", "Über Uns"]:
             switch_page("about_us")
-        if navbar == "FAQ":
+        if navbar in ["FAQ", "FAQ2"]:
             switch_page("faq")
-        if navbar == "Find Court":
+        if navbar in ["Find Court", "Gericht Finden"]:
             switch_page("question_crime")
 
 
