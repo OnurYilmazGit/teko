@@ -40,17 +40,27 @@ court_location = court_location.replace(', ', ',\n')
 court_location = court_location.replace(',\nDeutschland', '')
 
 chapter_spacer()
-st.subheader(f"The Court Finder identified {court_decision} as the appropriate court.")
-st.progress((1.0 / 7) * current_step)
-st.markdown('<div style="text-align: justify;">'
-            'Please confirm the court selection or enter the details of another court.'
-            '</div>', unsafe_allow_html=True)
+if st.session_state.current_lang == "English":
+    st.subheader(f"The Court Finder identified {court_decision} as the appropriate court.")
+    st.progress((1.0 / 7) * current_step)
+    st.markdown('<div style="text-align: justify;">'
+                'Please confirm the court selection or enter the details of another court.'
+                '</div>', unsafe_allow_html=True)
+else:
+    st.subheader(f"Der Gerichtsfinder hat das {court_decision} als das zuständige Gericht identifiziert.")
+    st.progress((1.0 / 7) * current_step)
+    st.markdown('<div style="text-align: justify;">'
+                'Bitte bestätigen Sie die Gerichtsselektion oder fügen Sie die Anschrift des passenden Gerichts ein.'
+                '</div>', unsafe_allow_html=True)
 
 question_court_address = st.text_area(label="Appropriate Court", value=court_decision+',\n'+court_location, 
                                       height=200, max_chars=150, label_visibility="hidden").strip()
 
 
-next_question = st.button("Next question")
+if st.session_state.current_lang == "English":
+    next_question = st.button("Next question")
+else:
+    next_question = st.button("Nächste Frage")
 
 if next_question:
     st.session_state.question_court = question_court_address

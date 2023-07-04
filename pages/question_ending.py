@@ -9,9 +9,13 @@ from fpdf import FPDF
 
 st.set_page_config(initial_sidebar_state="expanded", layout="wide")
 hide_pages(get_local_pages())
-current_step = 7
-st.session_state.current_page = "Find Court"
-st.session_state.current_index = 3
+current_step = 8
+if st.session_state.current_lang == "English":
+    st.session_state.current_page = "Find Court"
+    st.session_state.current_index = 3
+else:
+    st.session_state.current_page = "Gericht Finden"
+    st.session_state.current_index = 3
 
 
 # initialize session state attributes
@@ -26,8 +30,12 @@ show_sidebar()
 
 
 chapter_spacer()
-st.subheader(f"Please make sure that the created document is correct.")
-st.progress((1.0 / 7) * current_step)
+if st.session_state.current_lang == "English":
+    st.subheader(f"Please make sure that the created document is correct.")
+    st.progress((1.0 / 8) * current_step)
+else:
+    st.subheader(f"Bitte stellen Sie sicher, dass das generierte Dokument korrekt ist.")
+    st.progress((1.0 / 8) * current_step)
 
 court = st.session_state.question_court.replace(', ', ',\n')
 plaintiff = st.session_state.question_plaintiff.replace(', ', ',\n')
@@ -61,7 +69,10 @@ question_ending = st.text_area(label="Your information", value="An das \n\n" + c
                                                                 + ending
                                                                 , height=1500, max_chars=10000, label_visibility="hidden").strip()
 
-create_pdf = st.button("Create pdf")
+if st.session_state.current_lang == "English":
+    create_pdf = st.button("Create PDF")
+else: 
+    create_pdf = st.button("PDF erstellen")
 
 if create_pdf:
     st.session_state.question_ending = question_ending

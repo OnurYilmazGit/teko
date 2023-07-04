@@ -51,7 +51,7 @@ if st.session_state.current_lang == "English":
     question_subject = st.selectbox(label="", options=("Residential Rent", "Commercial Rent"))
     next_question = st.button("Next Question")
 else:
-    question_subject = st.selectbox(label="", options=("Private Miete", "Gesetzliche Miete"))
+    question_subject = st.selectbox(label="", options=("Private Miete", "Gewerbliche Miete"))
     next_question = st.button("Nächste Frage")
 if next_question:
     st.session_state.question_subject = question_subject

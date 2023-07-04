@@ -38,7 +38,7 @@ if st.session_state.current_lang == "English":
                 'discussed at the Landgericht.'
                 '</div>', unsafe_allow_html=True)
 else:
-    st.subheader("Wie hoch ist der Streitwert Ihres Falles?")
+    st.subheader("Wie hoch ist der Streitwert in Ihrem Fall?")
     st.markdown('<div style="text-align: justify;">'
                 'Der Streitwert des Falles bestimmmt die sachliche Zuständigkeit eines Gerichtes. Während Streitigkeiten '
                 'über gewerbliche Mieten bis zu 5000 Euro immer am Amtsgericht verhandelt werden, sind die Landgerichte '

@@ -31,14 +31,14 @@ show_sidebar()
 
 chapter_spacer()
 if st.session_state.current_lang == "English":
-    st.subheader("In which city do you live? Please provide the PLZ.")
+    st.subheader("In which city does the defendant live? Please provide the PLZ.")
     st.markdown('<div style="text-align: justify;">'
-                'This information is necessary to provide you with the respective court in your area.'
+                'This information is necessary to provide you with the respective court in the relevant area.'
                 '</div>', unsafe_allow_html=True)
 else:
-    st.subheader("In welcher Stadt wohnen Sie? Bitte geben Sie die PLZ an.")
+    st.subheader("In welcher Stadt wohnt der Beklagte? Bitte geben Sie die PLZ an.")
     st.markdown('<div style="text-align: justify;">'
-                'Diese Information is erforderlich um das zuständige Gericht in Ihrer Region zu finden.'
+                'Diese Information is erforderlich um das zuständige Gericht in der relevanten Region zu finden.'
                 '</div>', unsafe_allow_html=True)
 st.progress((1.0 / 7) * current_step)
 

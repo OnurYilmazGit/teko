@@ -8,9 +8,13 @@ from pages.custom_components import *
 
 st.set_page_config(initial_sidebar_state="expanded", layout="wide")
 hide_pages(get_local_pages())
-current_step = 5
-st.session_state.current_page = "Find Court"
-st.session_state.current_index = 3
+current_step = 6
+if st.session_state.current_lang == "English":
+    st.session_state.current_page = "Find Court"
+    st.session_state.current_index = 3
+else:
+    st.session_state.current_page = "Gericht Finden"
+    st.session_state.current_index = 3
 
 
 # initialize session state attributes
@@ -31,8 +35,7 @@ city = ', '.join([line.rstrip(',') for line in lines[1:]])
 target = st.session_state.question_target
 
 explanation_dict = {"Rückzahlung Mietkaution": "Der Beklagte wird verurteilt, an den Kläger " + amount + 
-                        " Euro zuzüglich Zinsen in Höhe fünf Prozentpunkten über dem Basiszinssatz aus diesem Betrag seit Rechtshängigkeit zu zahlen."+
-                        "\n\nFür den Fall, dass das Gericht das schriftliche Vorverfahren anordnet, wird beantragt, ein Versäumnisurteil (§ 331 Absatz 3 ZPO) zu erlassen, sofern der Beklagte trotz Aufforderung seine Verteidigungsabsicht nicht zeitgerecht anzeigt (§ 276 Absatz 1 ZPO).\n\n",
+                        " Euro zuzüglich Zinsen in Höhe fünf Prozentpunkten über dem Basiszinssatz aus diesem Betrag seit Rechtshängigkeit zu zahlen.",
                     "Abrechnung der Nebenkosten": "Der Beklagte wird verurteilt, über die in der " + city +
                         " gelegene Wohnung in der Zeit vom 01.01 - 31.12.yyyy angefallenen Betriebskosten abzurechnen.\n\n"+
                         "Der Kläger mietete die im Antrag genauer bezeichnete Wohnung im Jahr yyyy an. Der Kläger hat für die Betriebskosten insgesamt eine monatliche Vorauszahlung in Höhe von XX Euro zu leisten." +
@@ -44,18 +47,31 @@ explanation = explanation_dict[target]
 print(explanation)
 
 chapter_spacer()
-st.subheader(f"Please give a concise explanation for your case.")
-st.progress((1.0 / 7) * current_step)
-st.markdown('<div style="text-align: justify;">'
-            'The explanation should include what you want to achieve with your case and the description of the facts.'
-            '</div>', unsafe_allow_html=True)
+if st.session_state.current_lang == "English":
+    st.subheader(f"Please give a concise explanation for your case.")
+    st.progress((1.0 / 7) * current_step)
+    st.markdown('<div style="text-align: justify;">'
+                'The explanation should include what you want to achieve with your case and the description of the facts.'
+                '</div>', unsafe_allow_html=True)
+else:
+    st.subheader(f"Bitte geben Sie eine präzise Erläuterung für Ihren Fall.")
+    st.progress((1.0 / 7) * current_step)
+    st.markdown('<div style="text-align: justify;">'
+                'Die Erklärung sollte beinhalten, was Sie mit Ihrem Fall erreichen wollen und die Beschreibung des Sachverhalts. Bitte füllen Sie etwaige Platzhalter für Datumsangaben und Geldbeträge aus.'
+                '</div>', unsafe_allow_html=True)
 
 
 question_explanation = st.text_area(label="Concise Explanation for the case.", value=explanation, placeholder="Concise Explanation for the case.",
-                                    height=1000, label_visibility="hidden").strip()
+                                    height=300, label_visibility="hidden").strip()
 
-next_question = st.button("Next question")
 
-if next_question:
-    st.session_state.question_explanation = question_explanation
-    switch_page("question_evidence")
+if st.session_state.current_lang == "English":
+    next_question = st.button("Next question")
+    if next_question:
+        st.session_state.question_explanation = question_explanation
+        switch_page("question_evidence")
+else:
+    next_question = st.button("Nächste Frage")
+    if next_question:
+        st.session_state.question_explanation = question_explanation
+        switch_page("question_evidence")

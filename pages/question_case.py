@@ -30,18 +30,31 @@ show_sidebar()
 
 # Content: Question
 chapter_spacer()
-st.subheader("What is the subproblem of tenancy law is the subject of dispute in your case?")
-st.progress((1.0 / 7) * current_step)
-st.markdown('<div style="text-align: justify;">'
-            'TEKO is currently only able to provide support in cases about repayment of rental deposit and '
-            'settlement of incidental rental costs.'
-            '</div>', unsafe_allow_html=True)
+if st.session_state.current_lang == "English":
+    st.subheader("What is the cause of action in your case?")
+    st.progress((1.0 / 7) * current_step)
+    st.markdown('<div style="text-align: justify;">'
+                'This information will become relevant when the lawsuit document is created.'
+                '</div>', unsafe_allow_html=True)
+else:
+    st.subheader("Was ist der Grund der Klage in Ihrem Fall?")
+    st.progress((1.0 / 7) * current_step)
+    st.markdown('<div style="text-align: justify;">'
+                'Diese Information wird relevant werden, wenn Sie das Klagedokument erstellen.'
+                '</div>', unsafe_allow_html=True)
+
 if st.session_state.current_lang == "English":
     question_case = st.selectbox(label="", options=("Repayment of the rental deposit", "Settlement of the incidental rental costs", "Other"), label_visibility="hidden")
 else:
     question_case = st.selectbox(label="", options=("Rückzahlung der Mietkaution", "Abrechnung der Nebenkosten", "Sonstiges"), label_visibility="hidden")
 
-next_question = st.button("Next Question")
-if next_question:
-    st.session_state.question_case = question_case
-    switch_page("question_appeal")
+if st.session_state.current_lang == "English":
+    next_question = st.button("Next Question")
+    if next_question:
+        st.session_state.question_case = question_case
+        switch_page("question_appeal")
+else:
+    next_question = st.button("Nächste Frage")
+    if next_question:
+        st.session_state.question_case = question_case
+        switch_page("question_appeal")
