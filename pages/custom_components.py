@@ -66,9 +66,8 @@ def show_navbar():
                 navbar = "Gericht Finden"
             else:
                 print("Error")
-    print(navbar, st.session_state.current_page)
+
     if navbar != st.session_state.current_page:
-        print("Test")
         if navbar in ["Home", "Startseite"]:
             switch_page("home")
         if navbar in ["About Us", "Über Uns"]:
@@ -80,11 +79,20 @@ def show_navbar():
 
 
 def get_question_dicts():
-    question_steps = {"question_crime": "Crime", "question_subject": "Subject", "question_case": "Case",
-                      "question_appeal": "Appeal", "question_amount": "Amount", "question_city": "City"}
-    document_steps = {"question_court": "Court", "question_plaintiff": "Plaintiff", "question_defendant": "Defendant",
-                      "question_target": "Target", "question_amount2": "Amount2", "question_explanation": "Explanation",
-                      "question_evidence": "Evidence", "question_ending": "Ending"}
+    if st.session_state.current_lang == "English":
+        question_steps = {"question_crime": "Crime", "question_subject": "Subject", "question_case": "Case",
+                          "question_appeal": "Appeal", "question_amount": "Amount", "question_city": "City"}
+        document_steps = {"question_court": "Court", "question_plaintiff": "Plaintiff", "question_defendant": "Defendant",
+                          "question_target": "Target", "question_amount2": "Amount Check", "question_explanation": "Explanation",
+                          "question_evidence": "Evidence", "question_ending": "Ending"}
+    else:
+        question_steps = {"question_crime": "Rechtsgebiet", "question_subject": "Thema", "question_case": "Fall",
+                          "question_appeal": "Beschwerde", "question_amount": "Betrag", "question_city": "Ort"}
+        document_steps = {"question_court": "Gericht", "question_plaintiff": "Ankläger",
+                          "question_defendant": "Angeklagter",
+                          "question_target": "Ziel", "question_amount2": "Betrag Prüfen",
+                          "question_explanation": "Begründung",
+                          "question_evidence": "Beweise", "question_ending": "Abschluss"}
     return question_steps, document_steps
 
 
@@ -94,9 +102,16 @@ def show_sidebar():
     wreath_blue_image = Image.open(current_path + "/assets/wreath_blue.png")
     question_steps, document_steps = get_question_dicts()
 
+    if st.session_state.current_lang =="English":
+        expander_string1 = "Find the correct court"
+        expander_string2 = "Create your lawsuit document"
+    else:
+        expander_string1 = "Gericht finden"
+        expander_string2 = "Klageschrift erstellen"
+
     with st.sidebar:
 
-        with st.expander("Find the correct court"):
+        with st.expander(expander_string1):
 
             for key, value in question_steps.items():
 
@@ -118,7 +133,7 @@ def show_sidebar():
                         if subject:
                             switch_page(key)
 
-        with st.expander("Create your lawsuit document"):
+        with st.expander(expander_string2):
 
             for key, value in document_steps.items():
 

@@ -32,7 +32,7 @@ print(target)
 chapter_spacer()
 if st.session_state.current_lang == "English":
     st.subheader(f"Please confirm the monetary amount of dispute in your case")
-    st.progress((1.0 / 7) * current_step)
+    st.progress((1.0 / 8) * current_step)
     if target == "Abrechnung der Nebenkosten":
         st.markdown('<div style="text-align: justify;">'
                 'Please confirm the amount of dispute or enter the correct amount. Please note that in cases involving utility bills, the amount is usually set at one-third of the utility bill paid for that year.'
@@ -45,7 +45,7 @@ if st.session_state.current_lang == "English":
         amount = int(st.session_state.question_amount)
 else:
     st.subheader(f"Bitte bestätigen sie den Streitwert in Ihrem Fall.")
-    st.progress((1.0 / 7) * current_step)
+    st.progress((1.0 / 8) * current_step)
     if target == "Abrechnung der Nebenkosten":
         st.markdown('<div style="text-align: justify;">'
                 'Bitte bestätigen Sie den Streitwert oder geben Sie den richtigen Betrag ein. Bitte beachten Sie, dass in Fällen, in denen es um die Abrechnung der Nebenkosten geht, der Betrag in der Regel auf ein Drittel der für das betreffende Jahr gezahlten Nebenkosten festgesetzt wird.'

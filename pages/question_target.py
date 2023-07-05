@@ -31,7 +31,7 @@ show_sidebar()
 chapter_spacer()
 if st.session_state.current_lang == "English":
     st.subheader(f"What is the reason for filing the case?")
-    st.progress((1.0 / 7) * current_step)
+    st.progress((1.0 / 8) * current_step)
     st.markdown('<div style="text-align: justify;">'
                 'More detailed information about your case is helping us to better support you.'
                 '</div>', unsafe_allow_html=True)
@@ -47,7 +47,7 @@ if st.session_state.current_lang == "English":
                 "until he needs to provide you with the utility bill.")
 else:
     st.subheader(f"Was ist der Grund Ihrer Klage?")
-    st.progress((1.0 / 7) * current_step)
+    st.progress((1.0 / 8) * current_step)
     st.markdown('<div style="text-align: justify;">'
                 'Detaillierte Informationen zu Ihrem Fall helfen uns, Sie zielgenau zu unterstützen.'
                 '</div>', unsafe_allow_html=True)

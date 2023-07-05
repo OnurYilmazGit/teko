@@ -42,13 +42,13 @@ court_location = court_location.replace(',\nDeutschland', '')
 chapter_spacer()
 if st.session_state.current_lang == "English":
     st.subheader(f"The Court Finder identified {court_decision} as the appropriate court.")
-    st.progress((1.0 / 7) * current_step)
+    st.progress((1.0 / 8) * current_step)
     st.markdown('<div style="text-align: justify;">'
                 'Please confirm the court selection or enter the details of another court.'
                 '</div>', unsafe_allow_html=True)
 else:
     st.subheader(f"Der Gerichtsfinder hat das {court_decision} als das zuständige Gericht identifiziert.")
-    st.progress((1.0 / 7) * current_step)
+    st.progress((1.0 / 8) * current_step)
     st.markdown('<div style="text-align: justify;">'
                 'Bitte bestätigen Sie die Gerichtsselektion oder fügen Sie die Anschrift des passenden Gerichts ein.'
                 '</div>', unsafe_allow_html=True)

@@ -49,13 +49,13 @@ print(explanation)
 chapter_spacer()
 if st.session_state.current_lang == "English":
     st.subheader(f"Please give a concise explanation for your case.")
-    st.progress((1.0 / 7) * current_step)
+    st.progress((1.0 / 8) * current_step)
     st.markdown('<div style="text-align: justify;">'
                 'The explanation should include what you want to achieve with your case and the description of the facts.'
                 '</div>', unsafe_allow_html=True)
 else:
     st.subheader(f"Bitte geben Sie eine präzise Erläuterung für Ihren Fall.")
-    st.progress((1.0 / 7) * current_step)
+    st.progress((1.0 / 8) * current_step)
     st.markdown('<div style="text-align: justify;">'
                 'Die Erklärung sollte beinhalten, was Sie mit Ihrem Fall erreichen wollen und die Beschreibung des Sachverhalts. Bitte füllen Sie etwaige Platzhalter für Datumsangaben und Geldbeträge aus.'
                 '</div>', unsafe_allow_html=True)

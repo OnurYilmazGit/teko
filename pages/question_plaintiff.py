@@ -32,13 +32,13 @@ show_sidebar()
 chapter_spacer()
 if st.session_state.current_lang == "English":
     st.subheader(f"What is your full name and address?")
-    st.progress((1.0 / 7) * current_step)
+    st.progress((1.0 / 8) * current_step)
     st.markdown('<div style="text-align: justify;">'
                 'Please provide the address in the shown format.'
                 '</div>', unsafe_allow_html=True)
 else:
     st.subheader(f"Was ist Ihr voller Name und Ihre Adresse?")
-    st.progress((1.0 / 7) * current_step)
+    st.progress((1.0 / 8) * current_step)
     st.markdown('<div style="text-align: justify;">'
                 'Bitte geben Sie die Adresse im angegebenen Format an.'
                 '</div>', unsafe_allow_html=True)
