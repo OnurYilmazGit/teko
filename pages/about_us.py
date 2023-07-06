@@ -95,9 +95,9 @@ profiles = [
                        "His hands-on developing skills make him the swiss knife of coding and our unbeatable "
                        "contributor for all aspects of technology.",
         "description_de": "Onur studiert Informatik an der Technischen Universität München. Als Werkstudent bei Intel "
-                          "entwickelte er verteilte Systeme zur Datenverwaltung. Seine praktischen "
-                          "Entwicklungskompetenzen machen ihn zum Schweizer Messer der Codierung und zu unserem "
-                          "unschlagbaren Mitarbeiter für alle Aspekte der Technologie."
+                          "entwickelt er verteilte Systeme zur Datenverwaltung. Seine praktischen "
+                          "Entwicklungskompetenzen machen ihn zum Schweizer Taschenmesser der Softwareentwicklung und zu unserem "
+                          "unschlagbaren Mitarbeiter für alle Themen rund um Technik."
     },
     {
         "name": "Eric Näser",

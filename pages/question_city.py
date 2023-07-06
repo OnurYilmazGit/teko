@@ -36,7 +36,7 @@ if st.session_state.current_lang == "English":
                 'This information is necessary to provide you with the respective court in the relevant area.'
                 '</div>', unsafe_allow_html=True)
 else:
-    st.subheader("In welcher Stadt wohnt der Beklagte? Bitte geben Sie die PLZ an.")
+    st.subheader("In welcher Stadt wohnt der Angeklagte? Bitte geben Sie die PLZ an.")
     st.markdown('<div style="text-align: justify;">'
                 'Diese Information is erforderlich um das zuständige Gericht in der relevanten Region zu finden.'
                 '</div>', unsafe_allow_html=True)

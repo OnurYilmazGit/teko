@@ -40,7 +40,7 @@ else:
     st.subheader("Was ist der Grund der Klage in Ihrem Fall?")
     st.progress((1.0 / 7) * current_step)
     st.markdown('<div style="text-align: justify;">'
-                'Diese Information wird relevant werden, wenn Sie das Klagedokument erstellen.'
+                'Diese Information ist für die Erstellung des Klagedokumentes erforderlich.'
                 '</div>', unsafe_allow_html=True)
 
 if st.session_state.current_lang == "English":

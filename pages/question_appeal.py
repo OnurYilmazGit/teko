@@ -38,7 +38,7 @@ if st.session_state.current_lang == "English":
 else:
     st.subheader("Wurde Ihr Fall bereits vor Gericht verhandelt? Möchten Sie Beschwerde einlegen oder in Berufung gehen?")
     st.markdown('<div style="text-align: justify;">'
-                'Beschwerden und Berufung gegen die Entscheidungen eines Amtsgerichts oder Landesgerichts '
+                'Beschwerden und Berufungen gegen die Entscheidungen eines Amtsgerichts oder Landesgerichts '
                 'werden vor dem Oberlandesgericht verhandelt. '
                 '</div>', unsafe_allow_html=True)
 st.progress((1.0 / 7) * current_step)

@@ -51,9 +51,9 @@ with col2:
         components_spacer()
         st.markdown('<div style="text-align: justify;">'
                     'TEKO hilft Ihnen bei der Lösung rechtlicher Streitigkeiten rund um das Thema Mietrecht. Wir '
-                    'unterstützen Sie bei der Navigation durch das Labyrinth des deutschen Gerichtssystems. Unser '
-                    'digitaler Assistent unterstützt Sie dabei, das richtige Gericht zu finden und die entsprechenden '
-                    'Unterlagen einzureichen.'
+                    'unterstützen Sie bei der Navigation durch das Labyrinth des deutschen Gerichtssystems. Dafür '
+                    'stellen wir unseren digitalen Assistenten zum Finden des richtigen Gerichts und einreichen der '
+                    'notwendigen zur Verfügung.'
                     '</div>', unsafe_allow_html=True)
         components_spacer()
         st.markdown('<div style="text-align: justify;">'
@@ -109,7 +109,7 @@ with benefit2:
                         '</div>', unsafe_allow_html=True)
         else:
             st.markdown('<div style="text-align: justify;">'
-                        'Unser leicht verständliches Frage-und-Antwort-Format führt Sie durch den Prozess, wobei '
+                        'Unser leicht verständliches Frage-und-Antwort-Format leitet Sie durch den Prozess, wobei '
                         'unser Entscheidungs-Algorithmus äußerst genaue Ergebnisse liefert.'
                         '</div>', unsafe_allow_html=True)
 with benefit3:
@@ -134,7 +134,7 @@ with benefit3:
                         '</div>', unsafe_allow_html=True)
         else:
             st.markdown('<div style="text-align: justify;">'
-                        'Verschwenden Sie keine Zeit und Geld mehr – Sie haben alle gültigen Informationen an '
+                        'Verschwenden Sie keine Zeit und Geld mehr – Sie haben alle notwendigen Informationen an '
                         'einem Ort!'
                         '</div>', unsafe_allow_html=True)
 
