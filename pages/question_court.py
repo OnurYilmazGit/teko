@@ -38,6 +38,8 @@ court_decision = court_decision.replace(',', '')
 court_location = get_address(court_decision)
 court_location = court_location.replace(', ', ',\n')
 court_location = court_location.replace(',\nDeutschland', '')
+court_location = court_location.replace(',\nGermany', '') 
+
 
 chapter_spacer()
 if st.session_state.current_lang == "English":
