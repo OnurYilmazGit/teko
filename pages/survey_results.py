@@ -45,6 +45,8 @@ court_type, explanation = find_court_type(subject=st.session_state.question_subj
 court_decision = receive_court(plz=st.session_state.question_city, court_type=court_type)
 court_location = get_address(court_decision)
 court_location = court_location.replace(', ', ',<br>')
+court_location = court_location.replace(',\nDeutschland', '')
+court_location = court_location.replace(',\nGermany', '')
 court_coordinates = get_coordinates(court_decision)
 
 if st.session_state.current_lang == "English":
