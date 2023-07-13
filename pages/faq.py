@@ -127,6 +127,67 @@ else:
         "Unser Court Finder soll Sie aktuell im Mietrecht unterstützen. Wir arbeiten daran, unseren Service auf ein "
         "breites Spektrum von Rechtsstreitigkeiten auszuweiten, von Zivilklagen über Strafsachen bis hin zu "
         "Familienrechtsangelegenheiten und Verwaltungsangelegenheiten.")
+    
+    components_spacer()
+    st.subheader("Fragen zur Dokumentenerstellung")
+    
+    expander = st.expander(label="Was passiert nachdem ich das zuständige Gericht mit dem Gerichtsfinder gefunden habe?")
+    expander.write("Sobald Sie das richtige Gericht für Ihren Fall gefunden haben, haben Sie die Möglichkeit, "
+                   "zu unserem Abschnitt Dokument erstellen zu gehen. Nachdem Sie Ihre Daten und die erforderlichen "
+                   "Informationen zu Ihrem Fall eingegeben haben, stellen wir Ihnen ein ausdruckbares Dokument zur Verfügung, "
+                   "das Sie verwenden können, um Ihren Fall vor Gericht zu verfolgen oder einen Anwalt zu konsultieren, "
+                   "um weitere rechtliche Schritte zu besprechen.")
+    
+    expander = st.expander(label="Ich weiß nicht, wie ich eine Klage formulieren soll und was sie enthalten soll. "
+                           "Wie können Sie mir dabei helfen?")
+    expander.write("Wir wissen, dass das Verfassen einer Klage eine Herausforderung sein kann, vor allem, "
+                   "wenn Sie sich nicht sicher sind, was Sie schreiben sollen. Unser Gerichtsfinder unterstützt Sie "
+                   "bei diesem Prozess. Hier erfahren Sie, wie wir helfen können:")
+    expander.write("   - Wir bieten schrittweise Anleitungen, Vorlagen und Beispiele, die Ihnen helfen, den Aufbau "
+                   "und Inhalt einer Klage zu verstehen.")
+    expander.write("   - TEKO stützt sich auf eine umfassende juristische Wissensdatenbank. Das bedeutet, "
+                   "dass die bereitgestellten Informationen und Anleitungen mit den rechtlichen Standards "
+                   "und bewährten Verfahren übereinstimmen. Sie können sich darauf verlassen, dass unser System Ihnen hilft, "
+                   "eine Klage zu verfassen, die den rechtlichen Anforderungen entspricht.")
+    expander.write("   - Zusätzlich zu den im Court Finder enthaltenen Anleitungen planen wir, in der nächsten Version "
+                   "der Anwendung Zugang zu zusätzlichen Ressourcen zu bieten. Dazu können Links zu Rechtsquellen, Artikeln "
+                   "oder Leitfäden gehören, die Ihnen helfen können, eine Klage effektiv zu verfassen.")
+    expander.write("Bitte bedenken Sie, dass unser Gerichtsfinder zwar wertvolle Hinweise geben kann, aber kein Ersatz "
+                   "für eine Rechtsberatung ist. Wenn Sie komplexe rechtliche Fragen haben oder persönliche Unterstützung "
+                   "benötigen, empfehlen wir Ihnen, einen Anwalt zu konsultieren, der Sie individuell beraten und Ihre Klage prüfen kann.")
+
+    components_spacer()
+    st.subheader("Fragen zur Datensicherheit")
+
+    expander = st.expander(label="Was passiert mit meinen Daten?")
+    expander.write("Die Sicherheit Ihrer Daten hat für uns oberste Priorität. Wir halten uns streng an die "
+                   "Europäische Datenschutzgrundverordnung (GDPR).")
+    expander.write("Der einzige Zweck, zu dem wir Ihre Daten verwenden, ist, Ihnen zu helfen, das richtige Gericht für "
+                   "Ihren Fall zu finden. Wir behandeln Ihre Daten vertraulich und geben sie nicht an Dritte weiter, "
+                   "es sei denn, wir sind gesetzlich dazu verpflichtet oder haben Ihre Zustimmung.")
+    expander = st.expander(label="Wie lang speichern Sie meine Daten?")
+    expander.write("Wir speichern Ihre Daten so lange, wie es für die Erfüllung des Zwecks, Sie bei der Suche nach dem "
+                   "richtigen Gericht zu unterstützen, erforderlich ist. Wenn Sie wünschen, dass Ihre Daten gelöscht werden, "
+                   "können Sie sich an unser Support-Team wenden, und wir werden Ihren Antrag vorbehaltlich rechtlicher "
+                   "Verpflichtungen umgehend bearbeiten.")
+    expander = st.expander(label="Auf welchen Geräten kann ich TEKO verwenden?")
+    expander.write("TEKO ist derzeit über eine Webanwendung zugänglich. Wir arbeiten daran, die Nutzung der App auf viele "
+                   "Geräte auszuweiten. Unsere Vision ist, dass Sie zwischen den Geräten wechseln können, während Ihre Daten "
+                   "in Ihrem Konto synchronisiert werden.")
+    
+    components_spacer()
+    st.subheader("Haben Sie weitere Fragen?")
+    st.markdown('<div style="text-align: justify;">'
+                'Senden Sie uns eine E-mail an: support@teko.com'
+                '</div>', unsafe_allow_html=True)
+
+
+    
+    
+
+    
+
+
 
 
 
