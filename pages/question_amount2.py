@@ -33,12 +33,12 @@ chapter_spacer()
 if st.session_state.current_lang == "English":
     st.subheader(f"Please confirm the monetary amount of dispute in your case")
     st.progress((1.0 / 8) * current_step)
-    if target == "Abrechnung der Nebenkosten":
+    if target == "Repayment of the rental deposit":
         st.markdown('<div style="text-align: justify;">'
                 'Please confirm the amount of dispute or enter the correct amount. Please note that in cases involving utility bills, the amount is usually set at one-third of the utility bill paid for that year.'
                 '</div>', unsafe_allow_html=True)
         amount = int(int(st.session_state.question_amount)/3)
-    elif target == "Rückzahlung Mietkaution":
+    elif target == "Settlement of the incidental rental costs":
         st.markdown('<div style="text-align: justify;">'
                 'Please confirm the amount of dispute or enter the correct amount.'
                 '</div>', unsafe_allow_html=True)

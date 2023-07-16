@@ -34,12 +34,20 @@ city = ', '.join([line.rstrip(',') for line in lines[1:]])
 
 target = st.session_state.question_target
 
-explanation_dict = {"Rückzahlung Mietkaution": "Der Beklagte wird verurteilt, an den Kläger " + amount + 
-                        " Euro zuzüglich Zinsen in Höhe fünf Prozentpunkten über dem Basiszinssatz aus diesem Betrag seit Rechtshängigkeit zu zahlen.",
-                    "Abrechnung der Nebenkosten": "Der Beklagte wird verurteilt, über die in der " + city +
-                        " gelegene Wohnung in der Zeit vom 01.01 - 31.12.yyyy angefallenen Betriebskosten abzurechnen.\n\n"+
-                        "Der Kläger mietete die im Antrag genauer bezeichnete Wohnung im Jahr yyyy an. Der Kläger hat für die Betriebskosten insgesamt eine monatliche Vorauszahlung in Höhe von XX Euro zu leisten." +
-                        " Die gesetzlichen Bestimmungen sehen eine Frist zur Abrechnung innerhalb von spätestens zwölf Monaten seit Ende des Abrechnungszeitraumes vor. Der Beklage hätte damit über die Betriebskosten spätestens bis zum 31.12.yyyy abrechnen müssen. Obgleich der Kläger vor der Abrechnung auf ebendiese Pflicht hingewiesen hat, blieb der Beklagte untätig."}
+if st.session_state.current_lang == "English":
+    explanation_dict = {"Repayment of the rental deposit": "Der Beklagte wird verurteilt, an den Kläger " + amount +
+                                                   " Euro zuzüglich Zinsen in Höhe fünf Prozentpunkten über dem Basiszinssatz aus diesem Betrag seit Rechtshängigkeit zu zahlen.",
+                        "Settlement of the incidental rental costs": "Der Beklagte wird verurteilt, über die in der " + city +
+                                                      " gelegene Wohnung in der Zeit vom 01.01 - 31.12.yyyy angefallenen Betriebskosten abzurechnen.\n\n" +
+                                                      "Der Kläger mietete die im Antrag genauer bezeichnete Wohnung im Jahr yyyy an. Der Kläger hat für die Betriebskosten insgesamt eine monatliche Vorauszahlung in Höhe von XX Euro zu leisten." +
+                                                      " Die gesetzlichen Bestimmungen sehen eine Frist zur Abrechnung innerhalb von spätestens zwölf Monaten seit Ende des Abrechnungszeitraumes vor. Der Beklage hätte damit über die Betriebskosten spätestens bis zum 31.12.yyyy abrechnen müssen. Obgleich der Kläger vor der Abrechnung auf ebendiese Pflicht hingewiesen hat, blieb der Beklagte untätig."}
+else:
+    explanation_dict = {"Rückzahlung Mietkaution": "Der Beklagte wird verurteilt, an den Kläger " + amount +
+                            " Euro zuzüglich Zinsen in Höhe fünf Prozentpunkten über dem Basiszinssatz aus diesem Betrag seit Rechtshängigkeit zu zahlen.",
+                        "Abrechnung der Nebenkosten": "Der Beklagte wird verurteilt, über die in der " + city +
+                            " gelegene Wohnung in der Zeit vom 01.01 - 31.12.yyyy angefallenen Betriebskosten abzurechnen.\n\n"+
+                            "Der Kläger mietete die im Antrag genauer bezeichnete Wohnung im Jahr yyyy an. Der Kläger hat für die Betriebskosten insgesamt eine monatliche Vorauszahlung in Höhe von XX Euro zu leisten." +
+                            " Die gesetzlichen Bestimmungen sehen eine Frist zur Abrechnung innerhalb von spätestens zwölf Monaten seit Ende des Abrechnungszeitraumes vor. Der Beklage hätte damit über die Betriebskosten spätestens bis zum 31.12.yyyy abrechnen müssen. Obgleich der Kläger vor der Abrechnung auf ebendiese Pflicht hingewiesen hat, blieb der Beklagte untätig."}
 
 
 explanation = explanation_dict[target]
