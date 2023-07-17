@@ -28,7 +28,8 @@ show_navbar()
 show_sidebar()
 
 target = st.session_state.question_target
-print(target)
+amount = st.session_state.question_amount
+
 chapter_spacer()
 if st.session_state.current_lang == "English":
     st.subheader(f"Please confirm the monetary amount of dispute in your case")
