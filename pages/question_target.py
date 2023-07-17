@@ -66,10 +66,7 @@ if st.session_state.current_lang == "English":
     next_question = st.button("Next question")
 
     if next_question:
-        if question_target == "Repayment of the rental deposit":
-            st.session_state.question_target = "Rückzahlung Mietkaution"
-        elif question_target == "Settlement of the incidental rental costs":
-            st.session_state.question_target = "Abrechnung der Nebenkosten"
+        st.session_state.question_target = question_target
         switch_page("question_amount2")
 else:
     next_question = st.button("Nächste Frage")
