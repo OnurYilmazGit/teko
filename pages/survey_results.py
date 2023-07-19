@@ -16,7 +16,7 @@ from src.web_scraper import *
 st.set_page_config(initial_sidebar_state="expanded", layout="wide")
 hide_pages(get_local_pages())
 current_path = str(Path(__file__).parents[1])
-current_step = 6
+current_step = 7
 if st.session_state.current_lang == "English":
     st.session_state.current_page = "Find Court"
     st.session_state.current_index = 3
